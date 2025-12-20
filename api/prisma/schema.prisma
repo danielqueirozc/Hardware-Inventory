@@ -33,7 +33,7 @@ enum ItemType {
 
 model Item {
   id     String   @id @default(uuid())
-  code  String   @unique
+  code   String   @unique
   name   String
   amount Int
   type   ItemType
