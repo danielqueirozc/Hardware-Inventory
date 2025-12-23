@@ -23,6 +23,7 @@ enum Filter {
   Lab_Hardware
 }
 
+
 enum ItemType {
   Component
   Computer
@@ -30,7 +31,6 @@ enum ItemType {
   Materials
   Cables
 }
-
 model Item {
   id     String   @id @default(uuid())
   code   String   @unique

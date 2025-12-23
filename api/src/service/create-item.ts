@@ -13,7 +13,7 @@ interface CreateItemResponse {
   item: Item
 }
 
-export class CreateItem {
+export class CreateItemService {
   constructor (private inventoryRepository: InventoryRepository) {}
 
   async execute({ name, amount, code, type, filter}: CreateItemRequest): Promise<CreateItemResponse> {
