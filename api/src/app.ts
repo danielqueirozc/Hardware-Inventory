@@ -13,6 +13,7 @@ import {
 import fastifyJwt from '@fastify/jwt'
 import { env } from './env'
 import fastifyCookie from '@fastify/cookie'
+import { register } from './http/routes/register'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -48,6 +49,10 @@ app.register(fastifyJwt, {
 })
 
 app.register(fastifyCookie)
+
+///////////////// Routes/////////////
+app.register(register)
+
 
 app.setValidatorCompiler(validatorCompiler) // serve para validar as requisições usando os schemas do Zod
 app.setSerializerCompiler(serializerCompiler) // serve para serializar as respostas usando os schemas do Zod
