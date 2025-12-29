@@ -4,14 +4,14 @@ import { Register } from "../controller/register";
 
 export const register: FastifyPluginAsyncZod = async (app) => {
   app.post(
-    '/register',
+    '/users',
     {
       schema: {
         summary: 'Register new user',
-        tags: [''],
+        tags: ['inventory'],
       response: {
         201: z.object({
-          message: z.string(),
+          message: z.string('User created successfully'),
         }),
       }
       }
