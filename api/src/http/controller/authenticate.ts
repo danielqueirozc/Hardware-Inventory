@@ -13,7 +13,7 @@ export async function Authenticate(request: FastifyRequest, reply: FastifyReply)
   try {
     const authenticateService = makeAuthenticateService()
 
-    const { token } = await authenticateService.execute({
+    const { user ,token } = await authenticateService.execute({
       email,
       password,
     })
@@ -26,7 +26,7 @@ export async function Authenticate(request: FastifyRequest, reply: FastifyReply)
       maxAge: 60 * 60 * 24, // 60: 1 minuto, 60: 1 hora, 24: 1 dia
     })
 
-    return reply.status(200).send({ message: 'Autenticado com sucesso', token })
+    return reply.status(200).send({ message: 'Autenticado com sucesso', token, user })
 
   } catch (error) {
     if (error instanceof Error) {
