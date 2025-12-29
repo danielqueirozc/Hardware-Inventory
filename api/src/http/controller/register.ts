@@ -20,7 +20,7 @@ export async function Register(request: FastifyRequest, reply: FastifyReply) {
       password,
     })
 
-    reply.status(201).send()
+    reply.status(201).send({ message: 'User created successfully' })
   } catch (error) {
     if (error instanceof z.ZodError) {
       return reply.status(400).send({ message: "Invalid request body", issues: error.issues })
