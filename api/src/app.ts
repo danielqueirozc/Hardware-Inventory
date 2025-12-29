@@ -14,6 +14,8 @@ import fastifyJwt from '@fastify/jwt'
 import { env } from './env'
 import fastifyCookie from '@fastify/cookie'
 import { register } from './http/routes/register'
+import { authenticate } from './http/routes/authenticate'
+import { validateToken } from './http/routes/validade-token'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -38,7 +40,6 @@ app.register(ScalarApiReference, {
   routePrefix: '/docs',
 })
 
-
 ///////////// JWT /////////////
 app.register(fastifyJwt, {
   secret: env.JWT,
@@ -52,6 +53,8 @@ app.register(fastifyCookie)
 
 ///////////////// Routes/////////////
 app.register(register)
+app.register(authenticate)
+app.register(validateToken)
 
 
 app.setValidatorCompiler(validatorCompiler) // serve para validar as requisições usando os schemas do Zod
