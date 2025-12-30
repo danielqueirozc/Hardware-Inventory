@@ -2,14 +2,17 @@
 import { DashboardItem } from "./ui/dashboard-item"
 import { Cable, Component, Laptop, LaptopMinimal, Wrench } from "lucide-react"
 import { Menu } from "./menu"
+import { useAuthStore } from "@/context/auth-store"
 
 export function Dashboard() {
+  const { user } = useAuthStore()
+
   return (
     <div className="flex flex-col">
       <header className="flex items-center justify-between bg-green px-10 py-4">
         <div className="flex flex-col gap-2">
           <p className="text-gray-300 text-xs">Bem vindo,</p>
-          <span className="text-white text-xs font-bold">Marina Bertioga</span>
+          <span className="text-white text-xs font-bold">{user?.name}</span>
         </div>
 
       <Menu />
