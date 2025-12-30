@@ -39,5 +39,15 @@ export const authServie = {
     const response = await api.post('/users', {name, email, password})
 
    return response.data
+  },
+
+  checkAuth: async () => {
+    try {
+      const response = await api.get('/me')
+
+      return response.data
+    } catch (error) {
+      throw error
+    }
   }
 }
