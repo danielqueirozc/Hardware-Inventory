@@ -2,10 +2,9 @@ import type { FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "../../lib/prisma";
 
 export async function ValidateToken(request: FastifyRequest, reply: FastifyReply) {
-
-  const userId = (request.user as { sub: string }).sub
-
   try {
+    const userId = (request.user as { sub: string }).sub
+    
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
@@ -17,14 +16,14 @@ export async function ValidateToken(request: FastifyRequest, reply: FastifyReply
         createdAt: true
       }
     })
-
+    
     if (!user) {
       return reply.status(404).send({ message: 'User not found' })
     }
 
-    reply.status(200).send({ user })
+    return reply.status(200).send({ user })
 
-  } catch (error) {
-    reply.status(500).send({ message: 'Error searching for user' })
+  } catch (error: any) {
+    return reply.status(500).send({ message: 'Error searching for user' })
   }
 }
