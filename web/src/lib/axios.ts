@@ -51,3 +51,11 @@ export const authServie = {
     }
   }
 }
+
+export const inventoryService = {
+  getItemsQuantity: async () => {
+    const response = await api.get('/items/quantity')
+
+    return response.data
+  },
+}
