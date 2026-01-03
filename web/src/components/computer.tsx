@@ -49,10 +49,10 @@ export function Computer() {
         <div className="flex flex-col gap-6 mt-8">
           {items.map(items => (
             <Computeritem 
+              key={items.code}
               name={items.name}
               code={items.code}
               amount={items.amount}
-              key={items.code} 
             />
           ))}
         </div>
