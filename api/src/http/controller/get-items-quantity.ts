@@ -3,16 +3,14 @@ import { makeGetItemsQuantityService } from "../../service/factories/make-get-it
 
 export async function GetItemsQuantity(request: FastifyRequest, reply: FastifyReply) {
   try {
-    request.jwtVerify()
-
     const getItemsQuantityService = makeGetItemsQuantityService()
 
-    const { Component, Computer, Notebook, Materials, Cables } = await getItemsQuantityService.execute()
-    
-    return reply.status(200).send({ Component, Computer, Notebook, Materials, Cables })
+    const response = await getItemsQuantityService.execute()
+
+    return reply.status(200).send(response)
 
   } catch (error) {
-      return reply.status(401).send({ message: 'Unauthorized' })
+    console.error('Erro em GetItemsQuantity:', error)
+    return reply.status(500).send({ message: 'Internal server error' })
   }
-  
 }
