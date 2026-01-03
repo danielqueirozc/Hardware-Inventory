@@ -16,6 +16,7 @@ import fastifyCookie from '@fastify/cookie'
 import { register } from './http/routes/register'
 import { authenticate } from './http/routes/authenticate'
 import { validateToken } from './http/routes/validade-token'
+import { getItemsQuantity } from './http/routes/get-items-quantity'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -55,6 +56,7 @@ app.register(fastifyCookie)
 app.register(register)
 app.register(authenticate)
 app.register(validateToken)
+app.register(getItemsQuantity)
 
 
 app.setValidatorCompiler(validatorCompiler) // serve para validar as requisições usando os schemas do Zod
