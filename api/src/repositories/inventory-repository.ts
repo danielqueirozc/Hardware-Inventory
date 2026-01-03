@@ -12,5 +12,4 @@ export interface InventoryRepository {
   create(data: Prisma.ItemCreateInput): Promise<Item>
   getByType(type: ItemType): Promise<Item[]>
   getItemsQuantity(): Promise<GetItemsQuantityResponse>
-
 }
