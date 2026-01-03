@@ -1,10 +1,14 @@
-// middlewares/verify-jwt.ts
-import type { FastifyReply, FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-export async function VerifyJwt(request: FastifyRequest, reply: FastifyReply) {
+export async function VerifyJwt(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
   try {
     await request.jwtVerify()
-  } catch (error) {
-    return reply.status(401).send({ message: 'Unauthorized' })
+  } catch (err) {
+    return reply.status(401).send({
+      message: 'Token inválido ou expirado'
+    })
   }
 }
