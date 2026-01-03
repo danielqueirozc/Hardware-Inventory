@@ -33,10 +33,19 @@ export class PrismaInventoryRepository implements InventoryRepository {
         return acc
       }, {} as Record<ItemType, number>) // Tipagem no valor inicial
 
-      return overview
+      // console.log(overview)
+
+      return {
+        Component: overview.Component || 0,
+        Computer: overview.Computer || 0,
+        Notebook: overview.Notebook || 0,
+        Materials: overview.Materials || 0,
+        Cables: overview.Cables || 0
+      }
 
     } catch (error) {
-        throw new Error('Erro ao buscacar quantidade de itens')
+        console.error('Erro no repository getItemsQuantity:', error)
+        throw new Error('Erro ao buscar quantidade de itens')
       }
     }
 }
