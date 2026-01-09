@@ -11,7 +11,7 @@ export class PrismaInventoryRepository implements InventoryRepository {
     return item
   }
 
-  async getByType(type: ItemType): Promise<Item[]> {
+  async getItemsByType(type: ItemType): Promise<Item[]> {
     const items = await prisma.item.findMany({
       where: { type }
     })
