@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Login } from "./components/login";
 import { Register } from "./components/register";
 import { Dashboard } from "./components/dashboard";
-import { Computer } from "./components/computer";
+// import { Computer } from "./components/computer";
 import { useAuthStore } from "./context/auth-store";
 import { useEffect, useState } from "react";
+import { ItemsPage } from "./components/ui/items-page";
 
 function PrivateRoute ({ children }: { children: React.ReactNode }) {
 const { isAuthenticated } = useAuthStore()
@@ -84,10 +85,10 @@ export function App() {
           } 
         />
         <Route 
-          path="/computer" 
+          path={'/items/:type'}
           element={
             <PrivateRoute>
-              <Computer />
+              <ItemsPage />
             </PrivateRoute>
           } 
         />
