@@ -1,12 +1,12 @@
 import { Trash, Edit } from "lucide-react";
 
-interface ComputerItemProps {
+interface ItemType {
   name: string
   code: string
   amount: number
 }
 
-export function Item({  name, code, amount }: ComputerItemProps) {
+export function Item({  name, code, amount }: ItemType) {
   return (
     <div className="flex flex-col border-x border-gray-300 rounded-lg bg-white shadow-[0_4px_6px_-1px] shadow-gray-400">
       <div className="flex items-center justify-between border-b-3 border-gray-300 pl-5 pr-8 py-2">
