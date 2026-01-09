@@ -1,3 +1,4 @@
+import type { ItemType, ItemFilterType } from "@/@types";
 import { inventoryService } from "@/lib/axios";
 import { create } from "zustand";
 
@@ -9,16 +10,25 @@ interface ItemsQuantityType {
   Cables: number
 }
 
+interface ItemProps {
+  type: ItemType
+  amount: number
+  code: string
+  name: string
+  filter: ItemFilterType
+}
+
 interface InventoryStoreType {
-  itemsByType: number
+  itemsByType: ItemProps[] | []
   itemsQuantity: ItemsQuantityType | null
 
   getItemsQuantity: () => Promise<ItemsQuantityType>
+  getItemsByType: (type: ItemType) => Promise<ItemProps[] | []>
 }
 
 export const useInventoryStore = create<InventoryStoreType>()(
   (set) => ({
-    itemsByType: 0,
+    itemsByType: [],
     itemsQuantity: {
       Component: 0,
       Computer: 0,
@@ -39,6 +49,21 @@ export const useInventoryStore = create<InventoryStoreType>()(
      } catch (error) {
         throw error
      }
-    }
+    },
+
+    getItemsByType: async (type: ItemType) => {
+      try {
+        console.log('fetching items by type:', type)
+        const response = await inventoryService.getItemsByType(type)
+
+        console.log('items by type response:', response)
+
+        set({ itemsByType: response })
+
+        return response
+      } catch (error) {
+        throw error
+      }
+    } 
   }),
 )
