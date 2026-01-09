@@ -4,6 +4,10 @@ import { CircleIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+interface RadioGroupItemType {
+  isClicked?: boolean
+}
+
 function RadioGroup({
   className,
   ...props
@@ -18,9 +22,10 @@ function RadioGroup({
 }
 
 function RadioGroupItem({
+  isClicked,
   className,
   ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+}: RadioGroupItemType & React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
@@ -34,7 +39,9 @@ function RadioGroupItem({
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
-        <CircleIcon className="fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
+        <CircleIcon
+          className={`absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 ${isClicked ? 'fill-blue-500 stroke-blue-500' : 'fill-orange-500 stroke-orange-500'}`}
+        />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )
