@@ -17,6 +17,7 @@ import { register } from './http/routes/register'
 import { authenticate } from './http/routes/authenticate'
 import { validateToken } from './http/routes/validade-token'
 import { getItemsQuantity } from './http/routes/get-items-quantity'
+import { getItemsByType } from './http/routes/get-items-by-type'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -57,7 +58,7 @@ app.register(register)
 app.register(authenticate)
 app.register(validateToken)
 app.register(getItemsQuantity)
-
+app.register(getItemsByType)
 
 app.setValidatorCompiler(validatorCompiler) // serve para validar as requisições usando os schemas do Zod
 app.setSerializerCompiler(serializerCompiler) // serve para serializar as respostas usando os schemas do Zod
