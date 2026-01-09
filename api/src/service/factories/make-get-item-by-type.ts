@@ -1,5 +1,5 @@
 import { PrismaInventoryRepository } from "../../repositories/prisma/prisma-inventory-repository";
-import { GetItemByTypeService } from "../get-item-by-type";
+import { GetItemByTypeService } from "../get-items-by-type";
 
 export function makeGetItemByTypeService() {
   const inventoryRepository = new PrismaInventoryRepository()
