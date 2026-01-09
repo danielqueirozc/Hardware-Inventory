@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { LoginType, RegisterType } from '../@types'
+import type { ItemType, LoginType, RegisterType } from '../@types'
 import { useAuthStore } from '@/context/auth-store'
 
 export const api = axios.create({
@@ -58,4 +58,10 @@ export const inventoryService = {
 
     return response.data
   },
+  getItemsByType: async (type: ItemType) => {
+    const response = await api.get(`/items/${type}`)
+    console.log('API response for getItemsByType:', response)
+
+    return response.data.items
+  }
 }
