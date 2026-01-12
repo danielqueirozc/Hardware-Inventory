@@ -5,6 +5,7 @@ import { useAuthStore } from "@/context/auth-store"
 import { useInventoryStore } from "@/context/inventory-store"
 import { useEffect } from "react"
 import type { ItemType } from "@/@types"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 const ITEM_CONFIG: Record<ItemType, { icon: React.ReactNode; label: string }> = {
   Computer: { icon: <LaptopMinimal />, label: 'Computadores' },
@@ -22,12 +23,22 @@ export function Dashboard() {
     getItemsQuantity()
   }, [getItemsQuantity])
 
+  const profileImageUrl = user?.imageUrl 
+    ? `http://localhost:3333${user.imageUrl}` 
+    : "https://github.com/shadcn.png"
+
   return (
     <div className="flex flex-col">
       <header className="flex items-center justify-between bg-green px-10 py-4">
-        <div className="flex flex-col gap-2">
-          <p className="text-gray-300 text-xs">Bem vindo,</p>
-          <span className="text-white text-xs font-bold">{user?.name}</span>
+        <div className="flex gap-3 items-center">
+          <Avatar className="w-10 h-10">
+            <AvatarImage src={profileImageUrl} />
+            <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col gap-2">
+            <p className="text-gray-300 text-xs">Bem vindo,</p>
+            <span className="text-white text-xs font-bold">{user?.name}</span>
+          </div>
         </div>
 
         <Menu />
