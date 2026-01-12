@@ -42,9 +42,10 @@ export function Components() {
 
         <div className="flex flex-col gap-6 mt-8">
           {itemsByType.map(item => (
-            <Item 
+            <Item
               key={item.code}
               name={item.name}
+              id={item.id}
               code={item.code}
               amount={item.amount}
             />
