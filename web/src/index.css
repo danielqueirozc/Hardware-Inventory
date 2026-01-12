@@ -10,6 +10,8 @@ body {
 }
 
 @theme inline {
+  --default-font-family: JetBrains Mono;
+
   --color-green: #086632;
   --color-green-700: #1B7744;
   --color-green-300: #E4F3E3;
