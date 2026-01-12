@@ -4,8 +4,8 @@ import { CircleIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-interface RadioGroupItemType {
-  isClicked?: boolean
+interface RadioGroupItemProps {
+  color?: "default" | "blue" // Nova prop
 }
 
 function RadioGroup({
@@ -22,10 +22,16 @@ function RadioGroup({
 }
 
 function RadioGroupItem({
-  isClicked,
   className,
+  color = "default", // Cor padrão é laranja
   ...props
-}: RadioGroupItemType & React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+}: RadioGroupItemProps & React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+  
+  const colorClasses = {
+    default: "fill-orange-500 stroke-orange-500",
+    blue: "fill-blue-500 stroke-blue-500"
+  }
+
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
@@ -40,7 +46,10 @@ function RadioGroupItem({
         className="relative flex items-center justify-center"
       >
         <CircleIcon
-          className={`absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 ${isClicked ? 'fill-blue-500 stroke-blue-500' : 'fill-orange-500 stroke-orange-500'}`}
+          className={cn(
+            "absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2",
+            colorClasses[color]
+          )}
         />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
