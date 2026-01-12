@@ -45,6 +45,7 @@ export function Notebooks() {
             <Item 
               key={item.code}
               name={item.name}
+              id={item.id}
               code={item.code}
               amount={item.amount}
             />
