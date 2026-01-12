@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Login } from "./components/login";
 import { Register } from "./components/register";
 import { Dashboard } from "./components/dashboard";
-// import { Computer } from "./components/computer";
 import { useAuthStore } from "./context/auth-store";
 import { useEffect, useState } from "react";
 import { ItemsPage } from "./components/ui/items-page";
+import   { Profile } from "./components/profile";
 
 function PrivateRoute ({ children }: { children: React.ReactNode }) {
 const { isAuthenticated } = useAuthStore()
@@ -89,6 +89,14 @@ export function App() {
           element={
             <PrivateRoute>
               <ItemsPage />
+            </PrivateRoute>
+          } 
+        />
+         <Route 
+          path={'/profile'}
+          element={
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           } 
         />
