@@ -37,7 +37,7 @@ export function DialogAddNew() {
             <Label className="text-gray-600" htmlFor="terms">Lab Línguas</Label>
           </div>
 
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
             <Checkbox className="border-green" id="terms" />
             <Label className="text-gray-600" htmlFor="terms">Lab Informática</Label>
           </div>
@@ -56,7 +56,7 @@ export function DialogAddNew() {
                 value={inputValue}
                 type="text" 
                 onChange={handleInputChange}
-                className="focus:outline-none placeholder:text-gray-350 placeholder:font-normal px-3 placeholder:text-sm" 
+                className="focus:outline-none placeholder:text-gray-350 placeholder:font-normal px-3 placeholder:text-sm w-full" 
                 placeholder="Digite o novo item"
               />
               <div className="w-px h-7/10 bg-gray-350" />
