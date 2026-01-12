@@ -12,6 +12,7 @@ interface UserType {
   id: string
   name: string
   email: string
+  imageUrl?: string | null
   password_hash: string
   created_at: string
 }
@@ -26,6 +27,7 @@ interface AuthStore {
   register: (data: RegisterType) => Promise<void>
   logout: () => void
   checkAuth: () => Promise<void>
+  updateProfileImage: (file: File) => Promise<void>
 }
 
 // create<AuthStore>()() - Note os dois parênteses! Isso é necessário quando usa TypeScript com middleware (persist). É uma peculiaridade do Zustand.
@@ -97,12 +99,29 @@ export const useAuthStore = create<AuthStore>()(
           const response = await authServie.checkAuth()
 
           // Atualiza o estado com os dados do usuário
-          set({ user: response.user, isAuthenticated: true })
+          set(state => ({
+            user: response.user? {
+              ... response.user,
+              imageUrl: response.user.imageUrl || state.user?.imageUrl || null
+            } : null,
+            isAuthenticated: true,
+          }))
 
         } catch (error) {
           set({ user: null, token: null, isAuthenticated: false })
         }
       },
+
+      updateProfileImage: async (file: File) => {
+        set({ isLoading: true })
+
+        const response = await authServie.updateProfileImage(file)
+
+        set(state => ({
+          user: state.user ? { ...state.user, imageUrl: response.imageUrl } : null,
+          isLoading: false,
+        }))
+      }
     }),
     {
       name: 'auth-storage', // Nome da chave no localStorage
