@@ -49,6 +49,19 @@ export const authServie = {
     } catch (error) {
       throw error
     }
+  },
+
+  updateProfileImage: async (file: File) => {
+    const formData = new FormData()
+    formData.append('file', file) // append = adicionar um novo campo ao formData
+
+    const response = await api.patch('/users/profile-image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+
+    return response.data
   }
 }
 
@@ -63,5 +76,9 @@ export const inventoryService = {
     console.log('API response for getItemsByType:', response)
 
     return response.data.items
+  },
+
+  deleteItem: async (id: string) => {
+    await api.delete(`/item/${id}`)
   }
 }
