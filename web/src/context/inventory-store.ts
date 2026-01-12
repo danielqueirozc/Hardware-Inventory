@@ -13,6 +13,7 @@ interface ItemsQuantityType {
 interface ItemProps {
   type: ItemType
   amount: number
+  id: string
   code: string
   name: string
   filter: ItemFilterType
@@ -24,6 +25,7 @@ interface InventoryStoreType {
 
   getItemsQuantity: () => Promise<ItemsQuantityType>
   getItemsByType: (type: ItemType) => Promise<ItemProps[] | []>
+  deleteItem: (id: string) => Promise<void>
 }
 
 export const useInventoryStore = create<InventoryStoreType>()(
@@ -64,6 +66,19 @@ export const useInventoryStore = create<InventoryStoreType>()(
       } catch (error) {
         throw error
       }
-    } 
+    },
+    deleteItem: async (id: string) => {
+      try {
+        await inventoryService.deleteItem(id)
+
+        set(state => ({
+          itemsByType: state.itemsByType.filter(item => item.id !== id)
+        }))
+        
+      } catch (error) {
+        console.error('Error deleting item:', error)
+        throw error
+      }
+    }
   }),
 )
