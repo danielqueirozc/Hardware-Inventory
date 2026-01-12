@@ -8,14 +8,13 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useInventoryStore } from "@/context/inventory-store";
+import { ItemType } from "@/@types/index.d.ts";
 
 export function Menu() {
-  const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [selectedValue, setSelectedValue] = useState<string>('') // Controla qual está selecionado
+  const { getItemsByType } = useInventoryStore()
   const navigate = useNavigate()
-
-  function handleClick() {
-    setIsClicked(!isClicked)
-  }
 
   const MAP_ROUTES: Record<string, string> = {
     'Início': '/dashboard',
@@ -27,10 +26,28 @@ export function Menu() {
     'Perfil': '/profile'
   }
 
+  const MAP_ROUTES_API: Record<string, ItemType> = {
+    'Início': ItemType.Computer,
+    'Componentes': ItemType.Component,
+    'Computador': ItemType.Computer,
+    'Notebook': ItemType.Notebook,
+    'Materiais': ItemType.Materials,
+    'Cabos': ItemType.Cables,
+    'Perfil': ItemType.Computer
+  }
+
   function redirectToRoute(value: string) {
+    console.log(value)
+    setSelectedValue(value) // Atualiza o valor selecionado
+    
+    const routeApi = MAP_ROUTES_API[value]
+    getItemsByType(routeApi)
+
     const route = MAP_ROUTES[value]
+
     if (route) {
       navigate(route)
+      console.log('Navegando para:', route)
     }
   }
 
@@ -44,8 +61,10 @@ export function Menu() {
         </button>
       </SheetTrigger>
         <SheetContent className="absolute top-18 bg-green h-7/10 w-6/10 rounded-l-[60px] border-0">
+
           <RadioGroup
             className="flex flex-col gap-12 justify-center pl-12 py-20"
+            value={selectedValue} // ← Adicione isso
             onValueChange={redirectToRoute}
           >
             <div className="flex items-center space-x-2">
@@ -69,17 +88,15 @@ export function Menu() {
               <Label className="text-gray-350 text-lg font-semibold">Materiais</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="option-two" />
+              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="Cabos" />
               <Label className="text-gray-350 text-lg font-semibold">Cabos</Label>
             </div>
 
             <div className="flex items-center space-x-2 mt-8">
               <RadioGroupItem
-                isClicked={isClicked}
-                onClick={handleClick} 
+                color="blue" // ← Cor diferente só para o Perfil!
                 className="border-0 bg-gray-350 w-2 h-2" 
                 value="Perfil" 
-                id="option-two" 
               />
               <Label className="text-gray-350 text-lg font-semibold">Perfil</Label>
             </div>
