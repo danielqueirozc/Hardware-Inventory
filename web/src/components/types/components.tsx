@@ -2,7 +2,7 @@ import { ArrowLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Item } from "../ui/item";
 import { useInventoryStore } from "@/context/inventory-store";
-import { DialogAddNew } from "../dialog-add-new";
+import { DialogAddNew } from "../dialog-add-new-item";
 
 export function Components() {
   const { itemsByType } = useInventoryStore()
@@ -48,8 +48,10 @@ export function Components() {
               id={item.id}
               code={item.code}
               amount={item.amount}
+              filters={item.filters}
             />
-          ))}
+          )
+          )}
         </div>
       </div>
     </div>
