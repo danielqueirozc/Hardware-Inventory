@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useInventoryStore } from "@/context/inventory-store";
-import { ItemType } from "@/@types/index.d.ts";
+import { ItemType } from "@/@types";
 
 export function Menu() {
   const [selectedValue, setSelectedValue] = useState<string>('') // Controla qual está selecionado
