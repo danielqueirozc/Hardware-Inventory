@@ -17,6 +17,11 @@ interface UserType {
   created_at: string
 }
 
+interface verifyCurrentPasswordResponseType {
+  message: string
+  valid: boolean
+}
+
 interface AuthStore {
  user: UserType | null
  token: string | null
@@ -28,6 +33,8 @@ interface AuthStore {
   logout: () => void
   checkAuth: () => Promise<void>
   updateProfileImage: (file: File) => Promise<void>
+  changePassword: (password: string) => Promise<void>
+  verifyCurrentPassword: (currentPassword: string) => Promise<verifyCurrentPasswordResponseType>
 }
 
 // create<AuthStore>()() - Note os dois parênteses! Isso é necessário quando usa TypeScript com middleware (persist). É uma peculiaridade do Zustand.
@@ -42,7 +49,6 @@ export const useAuthStore = create<AuthStore>()(
       isAuthenticated: false,
       isLoading: false,
 
-      // Action: Login
       login: async (data: LoginType) => {
         set({ isLoading: true })
         
@@ -64,7 +70,6 @@ export const useAuthStore = create<AuthStore>()(
         }
       },
 
-      // Action: Register
       register: async ({ name, email, password }: RegisterType) => {
         set({ isLoading: true })
         
@@ -76,7 +81,6 @@ export const useAuthStore = create<AuthStore>()(
         }
       },
 
-      // Action: Logout
       logout: () => {
         set({
           user: null,
@@ -85,7 +89,7 @@ export const useAuthStore = create<AuthStore>()(
         })
       },
 
-      // Action: Verificar autenticação
+      // verificar autenticação
       checkAuth: async () => {
         // é uma função especial do Zustand que retorna o estado atual sem fazer o componente re-renderizar. Útil para pegar valores dentro de funções.
         const token = useAuthStore.getState().token
@@ -121,6 +125,24 @@ export const useAuthStore = create<AuthStore>()(
           user: state.user ? { ...state.user, imageUrl: response.imageUrl } : null,
           isLoading: false,
         }))
+      },
+
+      changePassword: async (newPassword: string) => {
+        console.log(newPassword, 'context antes')
+        const response = await authServie.changePassword(newPassword)
+        console.log(response, 'context depois')
+
+        set(state => ({
+          user: state.user? { ...state.user, password_hash: response } : null
+        }))
+      },
+
+      verifyCurrentPassword: async (currentPassword: string) => {
+        console.log('context antes', currentPassword)
+        const response = await authServie.verifyCurrentPassword(currentPassword)
+        console.log('context depois', currentPassword)
+
+        return response
       }
     }),
     {
