@@ -8,7 +8,7 @@ export const authenticate: FastifyPluginAsyncZod = async (app) => {
     {
       schema: {
         summary: 'Authenticate user',
-        tags: ['inventory'],
+        tags: ['users'],
       response: {
         201: z.object({
           message: z.string('User authenticated successfully'),
