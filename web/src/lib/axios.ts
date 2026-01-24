@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { ItemType, LoginType, RegisterType } from '../@types'
+import type { CreateItemType ,EditItemType, ItemType, LoginType, RegisterType } from '../@types'
 import { useAuthStore } from '@/context/auth-store'
 
 export const api = axios.create({
@@ -62,6 +62,25 @@ export const authServie = {
     })
 
     return response.data
+  },
+  
+  changePassword: async (newPassword: string) => {
+    console.log(newPassword, 'indo')
+
+    const response = await api.patch('change-password', { newPassword })
+
+    console.log(response, 'volta')
+
+    return response.data
+
+  },
+
+  verifyCurrentPassword: async (currentPassword: string) => {
+    console.log('antes de enviar', currentPassword)
+    const response = await api.post('verify-current-password', { currentPassword })
+    console.log('depois de enviar', response)
+    return response.data
+
   }
 }
 
@@ -80,5 +99,24 @@ export const inventoryService = {
 
   deleteItem: async (id: string) => {
     await api.delete(`/item/${id}`)
-  }
+  },
+  
+  editItem: async ({ id, name, amount, filters }: EditItemType) => {
+    console.log({id, name, amount, filters})
+    const response = await api.put('/edit', { id, name, amount, filters })
+
+    console.log(response)
+
+    return response.data
+  },
+
+  createItem: async ({ name, amount, type, filters }: CreateItemType) => {
+    console.log('antes de mandar', {name, amount, type, filters})
+    const response = await api.post('/create', { name, amount, type, filters })
+    console.log('depois de mandar', {name, amount, type, filters})
+
+
+    return response.data
+  },
+
 }
