@@ -16,6 +16,7 @@ model User {
   id            String   @id @default(uuid())
   email         String   @unique
   name          String
+  imageUrl      String?
   password_hash String
   createdAt     DateTime @default(now())
 
@@ -28,7 +29,6 @@ enum Filter {
   Lab_Hardware
 }
 
-
 enum ItemType {
   Component
   Computer
@@ -36,13 +36,14 @@ enum ItemType {
   Materials
   Cables
 }
+
 model Item {
-  id     String   @id @default(uuid())
-  code   String   @unique
-  name   String
-  amount Int
-  type   ItemType
-  filter Filter
+  id      String   @id @default(uuid())
+  code    String   @unique
+  name    String
+  amount  Int
+  type    ItemType
+  filters Filter[]
 
   @@map("items")
 }
