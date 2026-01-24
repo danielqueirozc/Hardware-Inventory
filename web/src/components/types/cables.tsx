@@ -2,7 +2,7 @@ import { ArrowLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Item } from "../ui/item";
 import { useInventoryStore } from "@/context/inventory-store";
-import { DialogAddNew } from "../dialog-add-new";
+import { DialogAddNew } from "../dialog-add-new-item";
 
 export function Cables() {
   const { itemsByType } = useInventoryStore()
