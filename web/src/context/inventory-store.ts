@@ -1,4 +1,4 @@
-import type { ItemType, ItemFilterType } from "@/@types";
+import type { ItemType, ItemFilterType, EditItemType, CreateItemType } from "@/@types";
 import { inventoryService } from "@/lib/axios";
 import { create } from "zustand";
 
@@ -16,7 +16,7 @@ interface ItemProps {
   id: string
   code: string
   name: string
-  filter: ItemFilterType
+  filters: ItemFilterType[]
 }
 
 interface InventoryStoreType {
@@ -26,6 +26,8 @@ interface InventoryStoreType {
   getItemsQuantity: () => Promise<ItemsQuantityType>
   getItemsByType: (type: ItemType) => Promise<ItemProps[] | []>
   deleteItem: (id: string) => Promise<void>
+  editItem: ({ id, name, amount, filters }: EditItemType) => Promise<void>
+  createItem: ({ name, amount, type, filters }: CreateItemType) => Promise<void>
 }
 
 export const useInventoryStore = create<InventoryStoreType>()(
@@ -79,6 +81,40 @@ export const useInventoryStore = create<InventoryStoreType>()(
         console.error('Error deleting item:', error)
         throw error
       }
-    }
-  }),
+    },
+
+    editItem: async ({ id, name, amount, filters }: EditItemType) => {
+      try {
+        console.log({id, name, amount, filters})        
+        const response = await inventoryService.editItem({ id, name, amount, filters })
+
+        set(state => ({
+          itemsByType: state.itemsByType.map(item =>
+            item.id === id ? { ... item, ... response } : item
+          )
+        }))
+
+      } catch (error) {
+          console.error(error)  
+        throw error
+      }
+    },
+
+    createItem: async ({ name, amount, type, filters }: CreateItemType) => {
+      try {
+       console.log('antes de mandar (context)', {name, amount, type, filters})
+        
+        const response = await inventoryService.createItem({ name, amount, type, filters })
+
+        console.log('depois de mandar', response)
+
+
+        set(state => ({
+          itemsByType: [...state.itemsByType, response.item]
+        }))
+      } catch (error) {
+        throw error
+      }
+    } 
+  }), 
 )
