@@ -2,7 +2,7 @@ import { ArrowLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Item } from "../ui/item";
 import { useInventoryStore } from "@/context/inventory-store";
-import { DialogAddNew } from "../dialog-add-new";
+import { DialogAddNew } from "../dialog-add-new-item";
 
 export function Materials() {
   const { itemsByType } = useInventoryStore()
@@ -36,7 +36,7 @@ export function Materials() {
 
           <div className="w-px bg-gray-700 h-4/5" />
 
-        <DialogAddNew />
+          <DialogAddNew />
          
         </div>
 
@@ -48,6 +48,7 @@ export function Materials() {
               id={item.id}
               code={item.code}
               amount={item.amount}
+              filter={item.filter}
             />
           ))}
         </div>
