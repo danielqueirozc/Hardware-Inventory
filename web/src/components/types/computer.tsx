@@ -1,15 +1,17 @@
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Item } from "../ui/item";
 import { useInventoryStore } from "@/context/inventory-store";
-import { DialogAddNew } from "../dialog-add-new";
+import { DialogAddNew } from "../dialog-add-new-item";
 import { SearchInputMobile } from "../ui/search-input-mobile";
+import { ItemType } from "@/@types";
 
 export function Computers() {
   const { itemsByType } = useInventoryStore()
 
+
   return (
-    <div className="h-full bg-gray-200">
+    <div className="h-auto bg-gray-200">
        <header className="flex items-center justify-items-start bg-green px-10 py-4">
         <div className="flex items-center justify-center gap-4">
           <Link 
