@@ -23,7 +23,7 @@ export const getItemsByType: FastifyPluginAsyncZod = async (app) => {
                 amount: z.number(),
                 code: z.string(),
                 name: z.string(),
-                filter: z.enum(['Lab_Línguas', 'Lab_Informática', 'Lab_Hardware'])
+                filters: z.array(z.enum(['Lab_Línguas', 'Lab_Informática', 'Lab_Hardware']))
               })
             )
           }),
