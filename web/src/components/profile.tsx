@@ -2,25 +2,15 @@ import { ArrowLeft, Eye, EyeOff, LogOut, Camera } from "lucide-react";
 import { Menu } from "./menu";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Label } from "./ui/label";
 import { useState } from "react";
 import { useAuthStore } from "@/context/auth-store";
 import { toast } from "sonner"; // ou seu sistema de notificação
+import { ChangePasswordForm } from "./ui/change-password-form";
 
 export function Profile() {
-  const [isClickedActuallyPassword, setIsClickedActuallyPassword] = useState(false)
-  const [isClickedNewPassword, setIsClickedNewPassword] = useState(false)
   const [isUploadingImage, setIsUploadingImage] = useState(false)
 
-  const { user, updateProfileImage } = useAuthStore()
-
-  function handleClickActuallyPassword() {
-    setIsClickedActuallyPassword(!isClickedActuallyPassword)
-  }
-
-  function handleClickNewPassword() {
-    setIsClickedNewPassword(!isClickedNewPassword)
-  }
+  const { user, updateProfileImage, logout } = useAuthStore()
 
   async function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
@@ -107,58 +97,12 @@ export function Profile() {
             <p>{user?.email || 'email@exemplo.com'}</p>
           </div>
 
-        <form 
-          className="flex flex-col items-center gap-8 py-12"
-        >
-         <div className="flex flex-col gap-3">
-           <Label>Senha Atual</Label>
-            <div className="flex items-center justify-between gap-2 border border-green-500 rounded-lg px-3 py-2 bg-white">
-              <input
-                className="w-full h-full focus:outline-none placeholder:text-sm"
-                type={isClickedActuallyPassword ? 'text' : 'password'}
-                placeholder="Digite sua senha atual"
-              />
-              <div className="w-px h-9/10 bg-gray-350" />
-                <button type="button" onClick={handleClickActuallyPassword}>
-                  {isClickedActuallyPassword ? (
-                    <EyeOff className="text-green w-4 h-4" />
-                  ) : (
-                    <Eye className="text-green w-4 h-4" />
-                  )}
-              </button>
-            </div>
-         </div>
-
-          <div className="flex flex-col gap-3">
-            <Label>Nova Senha</Label>
-              <div className="flex items-center justify-between gap-2 border border-green-500 rounded-lg px-3 py-2 bg-white">
-                <input
-                  className="w-full h-full focus:outline-none placeholder:text-sm"
-                  type={isClickedNewPassword ? 'text' : 'password'}
-                  placeholder="Digite a nova senha"
-                />
-                <div className="w-px h-9/10 bg-gray-350" />
-                <button type="button" onClick={handleClickNewPassword}>
-                  {isClickedNewPassword ? (
-                    <EyeOff className="text-green w-4 h-4" />
-                  ) : (
-                    <Eye className="text-green w-4 h-4" />
-                  )}
-                </button>
-              </div>
-          </div>
-
-          <button
-            className="bg-green-700 text-white text-sm font-medium px-6 py-2 rounded-md mt-4" 
-            type="submit"
-          >
-            Mudar Senha
-          </button>
-        </form>
+        <ChangePasswordForm />
 
         </div>
 
         <Link
+          onClick={logout}
           className="mb-12 flex gap-2 text-red-500 font-medium" 
           to='/login'>
           <LogOut className="h-5" />
