@@ -1,6 +1,6 @@
 import type { Item, ItemType, Prisma } from "../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
-import type { GetItemsQuantityResponse, InventoryRepository } from "../inventory-repository";
+import type { EditItemInput, GetItemsQuantityResponse, InventoryRepository } from "../inventory-repository";
 
 export class PrismaInventoryRepository implements InventoryRepository {
   async create(data: Prisma.ItemCreateInput): Promise<Item> {
@@ -47,5 +47,24 @@ export class PrismaInventoryRepository implements InventoryRepository {
         console.error('Erro no repository getItemsQuantity:', error)
         throw new Error('Erro ao buscar quantidade de itens')
       }
-    }
+  }
+
+  async deleteItem(id: string): Promise<void> {
+    const item  = await prisma.item.delete({
+      where: { id }
+    })
+  }
+
+  async editItem({ id, name, amount, filters }: EditItemInput): Promise<Item> {
+    const item = await prisma.item.update({
+      where: { id },
+      data: {
+        name,
+        amount,
+        filters: { set: filters } // set: no Prisma, para campos de array (enum array), você precisa usar a sintaxe set:
+      }
+    })
+
+    return item
+  }
 }
