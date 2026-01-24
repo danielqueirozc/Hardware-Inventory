@@ -6,19 +6,23 @@ interface CreateItemRequest {
   amount: number
   code: string
   type: ItemType
-  filter: Filter 
+  filters: Filter[]
 }
 
 interface CreateItemResponse {
   item: Item
 }
 
-export class CreateItemService {
+export class CreateItem {
   constructor (private inventoryRepository: InventoryRepository) {}
 
-  async execute({ name, amount, code, type, filter}: CreateItemRequest): Promise<CreateItemResponse> {
+  async execute({ name, amount, code, type, filters}: CreateItemRequest): Promise<CreateItemResponse> {
     try {
-      const item = await this.inventoryRepository.create({ name, amount, code, type, filter})
+      console.log('chegou aqui no service', { name, amount, type, filters })
+      const item = await this.inventoryRepository.create({ name, amount, code, type, filters})
+
+      console.log('chegou aqui no retorno do service', item)
+      
 
       return {
         item
