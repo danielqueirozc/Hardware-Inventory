@@ -1,15 +1,20 @@
 import { useInventoryStore } from "@/context/inventory-store";
-import { Trash, Edit } from "lucide-react";
+import { Trash } from "lucide-react";
+import { EditItem } from "../edit-item";
+import type { ItemFilterType } from "@/@types";
 
 interface ItemType {
   name: string
   code: string
   amount: number
   id: string
+  filters: ItemFilterType[]
 }
 
-export function Item({  name, code, amount, id }: ItemType) {
+export function Item({  name, code, amount, id, filters }: ItemType) {
   const { deleteItem } = useInventoryStore()
+
+  // console.log(filters)
 
   return (
     <div className="flex flex-col border-x border-gray-300 rounded-lg bg-white shadow-[0_4px_6px_-1px] shadow-gray-400">
@@ -23,11 +28,7 @@ export function Item({  name, code, amount, id }: ItemType) {
             />
           </button>
           
-          <button>
-            <Edit 
-              className="text-green w-4 h-4"  
-            />
-          </button>
+         <EditItem id={id} name={name} amount={amount} filters={filters}  />
         </div>
       </div>
       <div className="flex justify-between pl-5 pr-8 py-2 border-b border-gray-300 ">
