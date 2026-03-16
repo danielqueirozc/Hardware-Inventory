@@ -8,7 +8,7 @@ import { toast } from "sonner"; // ou seu sistema de notificação
 import { ChangePasswordForm } from "./ui/change-password-form";
 
 export function Profile() {
-  const [isUploadingImage, setIsUploadingImage] = useState(false)
+  const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false)
 
   const { user, updateProfileImage, logout } = useAuthStore()
 
