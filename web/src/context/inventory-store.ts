@@ -74,6 +74,7 @@ export const useInventoryStore = create<InventoryStoreType>()(
         await inventoryService.deleteItem(id)
 
         set(state => ({
+          // mantém todos os itens cujo id é diferente do id que quero remover
           itemsByType: state.itemsByType.filter(item => item.id !== id)
         }))
         
@@ -82,7 +83,6 @@ export const useInventoryStore = create<InventoryStoreType>()(
         throw error
       }
     },
-
     editItem: async ({ id, name, amount, filters }: EditItemType) => {
       try {
         console.log({id, name, amount, filters})        
