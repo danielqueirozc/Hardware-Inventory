@@ -1,74 +1,63 @@
-import { DashboardItem } from "./ui/dashboard-item"
-import { Cable, Component, Laptop, LaptopMinimal, Wrench } from "lucide-react"
-import { Menu } from "./menu"
-import { useAuthStore } from "@/context/auth-store"
-import { useInventoryStore } from "@/context/inventory-store"
-import { useEffect } from "react"
-import type { ItemType } from "@/@types"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-
-const ITEM_CONFIG: Record<ItemType, { icon: React.ReactNode; label: string }> = {
-  Computer: { icon: <LaptopMinimal />, label: 'Computadores' },
-  Component: { icon: <Component />, label: 'Componentes' },
-  Materials: { icon: <Wrench />, label: 'Materiais' },
-  Notebook: { icon: <Laptop />, label: 'Notebooks' },
-  Cables: { icon: <Cable />, label: 'Cabos' },
-}
+import { Cable, Component, Laptop, LaptopMinimal, LayoutGrid, Package, Wrench } from "lucide-react";
+import { useEffect, useState } from "react";
+import { InfoUser } from "./ui/info-user";
+import { useAuthStore } from "@/context/auth-store";
+import { DashboardType } from "./ui/dashboard-type.tsx";
+import { ItemType } from "@/@types";
+import { useInventoryStore } from "@/context/inventory-store";
+import { Sidebar } from "./sidebar.tsx";
 
 export function Dashboard() {
+  const [ isClicked, setIsClicked ] = useState<boolean>(true)
+
   const { user } = useAuthStore()
   const { itemsQuantity, getItemsQuantity } = useInventoryStore()
+
+  const ITEM_CONFIG: Record<ItemType, {icon: React.ReactNode; label: string}> = {
+    Computer: { icon: <LaptopMinimal />, label: 'Computadores' },
+    Component: { icon: <Component />, label: 'Componentes' },
+    Materials: { icon: <Wrench />, label: 'Materiais' },
+    Notebook: { icon: <Laptop />, label: 'Notebooks' },
+    Cables: { icon: <Cable />, label: 'Cabos' },
+  }
 
   useEffect(() => {
     getItemsQuantity()
   }, [getItemsQuantity])
 
-  const profileImageUrl = user?.imageUrl 
-    ? `http://localhost:3333${user.imageUrl}` 
-    : "https://github.com/shadcn.png"
-
   return (
-    <div className="flex flex-col">
-      <header className="flex items-center justify-between bg-green px-10 py-4">
-        <div className="flex gap-3 items-center">
-          <Avatar className="w-10 h-10">
-            <AvatarImage src={profileImageUrl} />
-            <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col gap-2">
-            <p className="text-gray-300 text-xs">Bem vindo,</p>
-            <span className="text-white text-xs font-bold">{user?.name}</span>
+    <div className="flex h-screen">
+      <Sidebar />
+
+      <div className="flex flex-1 flex-col bg-[#FAFAFA]">
+        <header className="flex items-center justify-between bg-white px-14 py-8 border-b-3 border-gray-300">
+          <h1 className="text-green text-3xl font-bold">Components</h1>
+         <InfoUser />
+        </header>
+
+        <main className="bg-[#FAFAFA] p-12 flex flex-col gap-8">
+          <h1 className="text-2xl font-bold">Bem-Vindo, {user?.name}</h1>
+          <span className="text-gray-400 font-medium">Overview</span>
+          <div className="grid grid-cols-3 gap-3">
+            {Object.keys(ITEM_CONFIG).map(key => {
+              const type = key as ItemType
+
+              const config = ITEM_CONFIG[type]
+              const itemsAmount = itemsQuantity?.[type] || 0
+              // console.log(itemsAmount)
+
+              return (
+                <DashboardType
+                  key={type}
+                  type={config.label}
+                  itemType={type}
+                  icon={config.icon}
+                  amount={itemsAmount}
+                />
+              )
+            })}
           </div>
-        </div>
-
-        <Menu />
-      </header>
-
-      <div className="flex flex-col py-10 gap-10 px-8 bg-gray-200 h-screen">
-        <span className="text-green font-medium">Visão Geral</span>
-
-        <div className="flex flex-col w-full gap-8">
-          
-          {/* Pega todas as chaves (nomes das propriedades) do objeto ITEM_CONFIG e transforma em um array, depois percorre cada uma. */}
-          {/* Object.keys() pega só as etiquetas e faz uma lista. */}
-          {Object.keys(ITEM_CONFIG).map((key) => {
-            const type = key as ItemType
-            // Pega a configuração do item com base no tipo
-            // ex: type = component, entao: Component: { icon: <Component />, label: 'Componentes' },
-            const config = ITEM_CONFIG[type]
-            const itemsAmount = itemsQuantity?.[type] ?? 0
-
-            return (
-              <DashboardItem
-                key={type}
-                amount={itemsAmount}
-                type={config.label}
-                itemType={type}
-                icon={config.icon}
-              />
-            )
-          })}
-        </div>
+        </main>
       </div>
     </div>
   )
