@@ -11,12 +11,12 @@ import {
 
 export function SearchInputMobile() {
   return (
-     <div className="flex items-center relative w-full border border-green rounded-lg h-8">
+     <div className="flex items-center relative w-full md:h-12 border border-green rounded-lg h-8">
         <Search
           className="absolute left-3 text-gray-600 w-5 h-5 pointer-events-none"
         />
         <input
-          className="pl-9 placeholder:text-gray-600 placeholder:font-medium w-full h-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
+          className="pl-9 placeholder:text-gray-600 md:placeholder:text-lg placeholder:font-medium w-full h-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
           type="text"
           placeholder="Pesquisar"
         />
@@ -24,7 +24,7 @@ export function SearchInputMobile() {
         <Popover>
           <PopoverTrigger asChild>
             <button className="absolute right-3">
-              <SlidersHorizontal className="text-gray-600 w-5 h-5" />
+              <SlidersHorizontal className="text-gray-600 w-5 md:w-6 h-5 md:h-6" />
             </button>
           </PopoverTrigger>
           <PopoverContent className="flex flex-col gap-4 w-auto">
