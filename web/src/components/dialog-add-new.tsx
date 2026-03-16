@@ -10,13 +10,15 @@ import { Delete, Plus } from "lucide-react";
 import { useState } from "react";
 
 export function DialogAddNew() {
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState<string>('')
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(event.target.value)
-  }
+  // function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setInputValue(event.target.value)
+  // }
 
   function deleteLetter() {
+    // 0 -> começar do inicio da string (primeiro caractere)
+    // -1 -> ir até o ultimo caractere, sem inclui-lo
     setInputValue(inputValue.slice(0, -1))
   }
 
@@ -55,7 +57,7 @@ export function DialogAddNew() {
               <input
                 value={inputValue}
                 type="text" 
-                onChange={handleInputChange}
+                onChange={(e) => setInputValue(e.target.value)}
                 className="focus:outline-none placeholder:text-gray-350 placeholder:font-normal px-3 placeholder:text-sm w-full" 
                 placeholder="Digite o novo item"
               />
