@@ -82,10 +82,10 @@ export function ChangePasswordForm() {
   return (
      <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center gap-8 py-12"
+        className="flex flex-col items-center gap-8 md:gap-14 py-12 md:w-125"
       >
-         <div className="flex flex-col gap-3">
-           <Label>Senha Atual</Label>
+         <div className="flex flex-col gap-3 w-full">
+           <Label className="md:text-lg">Senha Atual</Label>
 
             { isCurrentPasswordValid === false && (
               <p className="text-sm text-red-500 font-semibol">
@@ -93,46 +93,46 @@ export function ChangePasswordForm() {
               </p>
             ) }
 
-            <div className={`flex items-center justify-between gap-2 border border-green-500 ${isCurrentPasswordValid === true || isCurrentPasswordValid === null ? 'border-green-500' : 'border-red-500' } rounded-lg px-3 py-2 bg-white`}>
+            <div className={`flex items-center justify-between gap-2 border border-green-500 ${isCurrentPasswordValid === true || isCurrentPasswordValid === null ? 'border-green-500' : 'border-red-500' } rounded-lg px-3 py-2 md:py-4 bg-white`}>
               <input
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="w-full h-full focus:outline-none placeholder:text-sm"
+                className="w-full h-full focus:outline-none placeholder:text-sm md:placeholder:text-lg"
                 type={isClickedActuallyPassword ? 'text' : 'password'}
                 placeholder="Digite sua senha atual"
               />
               <div className="w-px h-9/10 bg-gray-350" />
                 <button type="button" onClick={() => setIsClickedActuallyPassword(!isClickedActuallyPassword)}>
                   {isClickedActuallyPassword ? (
-                    <EyeOff className="text-green w-4 h-4" />
+                    <EyeOff className="text-green w-4 md:w-5 h-4 md:h-5" />
                   ) : (
-                    <Eye className="text-green w-4 h-4" />
+                    <Eye className="text-green w-4 md:w-5 h-4 md:h-5" />
                   )}
               </button>
             </div>
          </div>
 
-          <div className="flex flex-col gap-3">
-            <Label>Nova Senha</Label>
-              <div className="flex items-center justify-between gap-2 border border-green-500 rounded-lg px-3 py-2 bg-white">
+          <div className="flex flex-col gap-3 w-full">
+            <Label className="md:text-lg">Nova Senha</Label>
+              <div className="flex items-center justify-between gap-2 border border-green-500 rounded-lg px-3 py-2 md:py-4 bg-white">
                 <input
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full h-full focus:outline-none placeholder:text-sm"
+                  className="w-full h-full focus:outline-none placeholder:text-sm md:placeholder:text-lg"
                   type={isClickedNewPassword ? 'text' : 'password'}
                   placeholder="Digite a nova senha"
                 />
                 <div className="w-px h-9/10 bg-gray-350" />
                 <button type="button" onClick={() => setIsClickedNewPassword(!isClickedNewPassword)}>
                   {isClickedNewPassword ? (
-                    <EyeOff className="text-green w-4 h-4" />
+                    <EyeOff className="text-green w-4 md:w-6 h-5 md:h-5" />
                   ) : (
-                    <Eye className="text-green w-4 h-4" />
+                    <Eye className="text-green w-4 md:w-6 h-5 md:h-5" />
                   )}
                 </button>
               </div>
           </div>
 
-          <button
-            className="bg-green-700 text-white text-sm font-medium px-6 py-2 rounded-md mt-4" 
+          <button md:w-6
+            className="bg-green-700 text-white text-sm md:text-lg font-medium px-6 md:px-8 py-2 md:py-4 rounded-md mt-4" 
             type="submit"
           >
             Mudar Senha
