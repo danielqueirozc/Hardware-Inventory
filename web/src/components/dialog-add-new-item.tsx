@@ -53,9 +53,9 @@ export function DialogAddNew() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="flex items-center justify-center gap-2 text-white text-xs font-normal bg-green px-2 py-2 rounded-lg">
+        <button className="flex items-center justify-center gap-2 text-white text-xs md:text-lg font-normal bg-green px-2 md:px-3 py-2 md:py-2.5 rounded-lg cursor-pointer">
           Novo
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 md:w-5 h-4 md:h-5" />
         </button>
       </DialogTrigger>
       <DialogContent className="flex flex-col">
