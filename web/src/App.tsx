@@ -2,11 +2,12 @@ import { Introduction } from "./components/introduction";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Login } from "./components/login";
 import { Register } from "./components/register";
-import { Dashboard } from "./components/dashboard";
+import { DashboardMobile } from "./components/mobile/dashboard-mobile";
 import { useAuthStore } from "./context/auth-store";
 import { useEffect, useState } from "react";
 import { ItemsPage } from "./components/ui/items-page";
 import   { Profile } from "./components/profile";
+import { Dashboard } from "./components/dashboard";
 
 function PrivateRoute ({ children }: { children: React.ReactNode }) {
 const { isAuthenticated } = useAuthStore()
@@ -23,8 +24,9 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 export function App() {
   // const { token, checkAuth } = useAuthStore()
   const [isLoading, setIsLoading] = useState(true)
+  const [isLargeScreen, setIsLargeScreen] = useState<boolean>(window.innerWidth >= 1024)
 
-    useEffect(() => {
+  useEffect(() => {
     async function verify() {
       // Aguarda a hidratação terminar
       await useAuthStore.persist.rehydrate()
@@ -44,6 +46,15 @@ export function App() {
     verify()
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 1024)
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isLargeScreen])
+  console.log(isLargeScreen)
+
+  
   if (isLoading) return <p>Carregando...</p>
 
   return (
@@ -80,7 +91,11 @@ export function App() {
           path="/dashboard" 
           element={
             <PrivateRoute>
-              <Dashboard />
+              {isLargeScreen ? (
+                <Dashboard />
+              ) : (
+                <DashboardMobile />
+              )}
             </PrivateRoute>
           } 
         />
