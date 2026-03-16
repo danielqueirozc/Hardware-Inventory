@@ -29,14 +29,18 @@ export function EditItem({ id, name, amount, filters }: EditItemType) {
     setInputName(event.target.value)
   }
 
-  // Simulação de click
+  // simulação de click
   function handleCheckboxChange(filter: ItemFilterType) {
     setSelectedFilters(prev => 
-      prev.includes(filter)
-        ? prev.filter(item => item !== filter)  // (desmarca) remove se ja existe - se ja estiver dentro do array quer dizer que o checkbox ja esta marcado entao simula um click para retirar
+      prev.includes(filter) // se incluir o filter...
+        // se o item for !== do filter ele passa
+        // (desmarca) remove se ja existe - se ja estiver dentro do array quer dizer que o checkbox ja esta marcado entao simula um click para retirar
+        ? prev.filter(item => item !== filter)  
         : [...prev, filter] // (marca)  adiciona se não existe 
     )
   }
+
+  // id.filter(id => user.id !== id)
 
   function deleteLetter() {
     setInputName(name.slice(0, -1))
@@ -64,7 +68,7 @@ export function EditItem({ id, name, amount, filters }: EditItemType) {
     <Dialog>
       <DialogTrigger asChild>
         <button>
-          <Edit className="text-green w-4 h-4" />
+          <Edit className="text-green w-4 md:w-6 h-4 md:h-6" />
         </button>
       </DialogTrigger>
       <DialogContent className="flex flex-col">
