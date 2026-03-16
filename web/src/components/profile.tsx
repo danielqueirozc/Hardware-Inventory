@@ -1,5 +1,5 @@
 import { ArrowLeft, Eye, EyeOff, LogOut, Camera } from "lucide-react";
-import { Menu } from "./menu";
+import { Menu } from "./mobile/menu";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react";
@@ -48,16 +48,16 @@ export function Profile() {
     : "https://github.com/shadcn.png"
 
   return (
-    <div className="flex flex-col bg-gray-200 h-screen">
-       <header className="flex items-center justify-between bg-green px-10 py-4">
+    <div className="flex flex-col md:gap-8 bg-gray-200 h-screen">
+       <header className="flex items-center justify-between bg-green px-10 py-4 md:py-8">
           <div className="flex gap-4 items-center">
-            <Link 
-              className="text-white w-10 h-10 bg-green-700 rounded-full flex items-center justify-center" 
-              to='/dashboard'
-            >
-              <ArrowLeft />
-            </Link>
-            <span className="text-white font-semibold">Perfil</span>
+          <Link 
+            className="text-white w-10 md:w-15 h-10 md:h-15 bg-green-700 rounded-full flex items-center justify-center"
+            to="/dashboard"
+          >
+             <ArrowLeft className="md:w-8 md:h-8" />
+          </Link>
+            <span className="text-white md:text-xl font-semibold">Perfil</span>
           </div>
     
           <Menu />
@@ -67,7 +67,7 @@ export function Profile() {
         <div className="flex flex-col p-8">
           <div className="flex flex-col items-center gap-4 pb-6 border-b">
             <div className="relative rounded-full border-2 border-green">
-              <Avatar className="w-16 h-16">
+              <Avatar className="w-16 md:w-28 h-16 md:h-28">
                 <AvatarImage src={profileImageUrl} />
                 <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
               </Avatar>
@@ -82,7 +82,7 @@ export function Profile() {
                 <Camera className="w-3 h-3 text-white" />
               </label>
               
-              {/* Input escondido */}
+              {/* input escondido */}
               <input
                 id="profile-image-input"
                 type="file"
@@ -93,8 +93,8 @@ export function Profile() {
               />
             </div>
 
-            <span className="text-green-800 font-medium">{user?.name || 'Usuário'}</span>
-            <p>{user?.email || 'email@exemplo.com'}</p>
+            <span className="text-green-800 md:text-xl font-medium">{user?.name || 'Usuário'}</span>
+            <p className="md:text-xl">{user?.email || 'email@exemplo.com'}</p>
           </div>
 
         <ChangePasswordForm />
@@ -103,9 +103,10 @@ export function Profile() {
 
         <Link
           onClick={logout}
-          className="mb-12 flex gap-2 text-red-500 font-medium" 
-          to='/login'>
-          <LogOut className="h-5" />
+          className="mb-12 md:m-24 flex gap-2 text-red-500 md:text-lg font-medium" 
+          to='/login'
+        >
+          <LogOut className="h-5 md:h-6" />
           Sair
         </Link>
       </main>
