@@ -1,4 +1,4 @@
-import { Pencil, Search, SlidersHorizontal, Trash2 } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 import { InfoUser } from "./ui/info-user";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Checkbox } from "./ui/checkbox";
