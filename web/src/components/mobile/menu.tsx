@@ -12,7 +12,7 @@ import { useInventoryStore } from "@/context/inventory-store";
 import { ItemType } from "@/@types";
 
 export function Menu() {
-  const [selectedValue, setSelectedValue] = useState<string>('') // Controla qual está selecionado
+  const [selectedValue, setSelectedValue] = useState<string>('') // controla qual está selecionado
   const { getItemsByType } = useInventoryStore()
   const navigate = useNavigate()
 
@@ -65,6 +65,7 @@ export function Menu() {
           <RadioGroup
             className="flex flex-col gap-12 md:gap-18 justify-center pl-12 py-20"
             value={selectedValue}
+            //  é o callback que dispara quando o usuário seleciona uma opção, tb recebe o value e passo para redirectToRoute
             onValueChange={redirectToRoute}
           >
             <div className="flex items-center space-x-2">
