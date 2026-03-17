@@ -1,5 +1,5 @@
-import { Cable, Component, Laptop, LaptopMinimal, LayoutGrid, Package, Wrench } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Cable, Component, Laptop, LaptopMinimal, Wrench } from "lucide-react";
+import { useEffect } from "react";
 import { InfoUser } from "./ui/info-user";
 import { useAuthStore } from "@/context/auth-store";
 import { DashboardType } from "./ui/dashboard-type.tsx";
