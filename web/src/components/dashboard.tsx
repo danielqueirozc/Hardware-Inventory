@@ -8,8 +8,6 @@ import { useInventoryStore } from "@/context/inventory-store";
 import { Sidebar } from "./sidebar.tsx";
 
 export function Dashboard() {
-  const [ isClicked, setIsClicked ] = useState<boolean>(true)
-
   const { user } = useAuthStore()
   const { itemsQuantity, getItemsQuantity } = useInventoryStore()
 
