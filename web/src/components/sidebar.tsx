@@ -64,7 +64,7 @@ export function Sidebar() {
         <button
           onClick={() => handleSetActiveLink("estoque")}
           className={`
-            ${activeLink === "estoque" ? 'shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-4px_0_rgba(0,0,0,0.25)] before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-white before:rounded-r-full' : null}
+            ${activeLink === "estoque" ? 'shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-4px_0_rgba(0,0,0,0.25)] before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-white before:rounded-r-full cursor-pointer' : null}
             relative flex items-center gap-4 text-white text-lg font-bold rounded-lg py-3 -ml-4 pl-4` }
         >
           <Package />
@@ -80,25 +80,25 @@ export function Sidebar() {
             value={selectedValue}
             onValueChange={redirectToRoute}
           >
-            <Link to="/items/Component" className="flex items-center space-x-2" onClick={() => redirectToRoute("Componentes")}>
-              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="Componentes" />
-              <Label className="text-gray-350 text-sm font-semibold">Componentes</Label>
+            <Link to="/items/Component" className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Componentes")}>
+              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2 cursor-pointer" value="Componentes" />
+              <Label className="text-gray-350 text-sm font-semibold cursor-pointer">Componentes</Label>
             </Link>
-            <Link to="/items/Computer" className="flex items-center space-x-2" onClick={() => redirectToRoute("Computador")}>
-              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="Computador" />
-              <Label className="text-gray-350 text-sm font-semibold">Computador</Label>
+            <Link to="/items/Computer" className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Computador")}>
+              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2 cursor-pointer" value="Computador" />
+              <Label className="text-gray-350 text-sm font-semibold cursor-pointer">Computador</Label>
             </Link>
-            <Link to="/items/Notebook" className="flex items-center space-x-2" onClick={() => redirectToRoute("Notebook")}>
-              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="Notebook" />
-              <Label className="text-gray-350 text-sm font-semibold">Notebook</Label>
+            <Link to="/items/Notebook" className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Notebook")}>
+              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2 cursor-pointer" value="Notebook" />
+              <Label className="text-gray-350 text-sm font-semibold cursor-pointer">Notebook</Label>
             </Link>
-             <Link to="/items/Materials" className="flex items-center space-x-2" onClick={() => redirectToRoute("Materiais")}>
-              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="Materiais" />
-              <Label className="text-gray-350 text-sm font-semibold">Materiais</Label>
+             <Link to="/items/Materials" className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Materiais")}>
+              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2 cursor-pointer" value="Materiais" />
+              <Label className="text-gray-350 text-sm font-semibold cursor-pointer">Materiais</Label>
             </Link>
-            <Link to="/items/Cables" className="flex items-center space-x-2" onClick={() => redirectToRoute("Cabos")}>
-              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2" value="Cabos" />
-              <Label className="text-gray-350 text-sm font-semibold">Cabos</Label>
+            <Link to="/items/Cables" className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Cabos")}>
+              <RadioGroupItem className="border-0 bg-gray-350 w-2 h-2 cursor-pointer" value="Cabos" />
+              <Label className="text-gray-350 text-sm font-semibold cursor-pointer">Cabos</Label>
             </Link>
           </RadioGroup>
         ) : (
