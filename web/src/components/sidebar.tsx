@@ -14,7 +14,7 @@ export function Sidebar() {
     return localStorage.getItem("selectedValue") || ''
   })
 
-  const { getItemsByType ,itemsByType } = useInventoryStore()
+  const { getItemsByType } = useInventoryStore()
 
   const handleSetActiveLink = (link: string) => {
     setActiveLink(link)
