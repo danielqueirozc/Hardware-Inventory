@@ -5,7 +5,6 @@ import { useInventoryStore } from "@/context/inventory-store"
 import { useEffect } from "react"
 import type { ItemType } from "@/@types"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { DashboardItem } from "../dashboard-item"
 import { DashboardType } from "../ui/dashboard-type"
 
 const ITEM_CONFIG: Record<ItemType, { icon: React.ReactNode; label: string }> = {
