@@ -6,8 +6,9 @@ import { DashboardMobile } from "./components/mobile/dashboard-mobile";
 import { useAuthStore } from "./context/auth-store";
 import { useEffect, useState } from "react";
 import { ItemsPage } from "./components/ui/items-page";
-import   { Profile } from "./components/profile";
+import   { ProfileMobile } from "./components/mobile/profile-mobile";
 import { Dashboard } from "./components/dashboard";
+import { Profile } from "./components/profile";
 
 function PrivateRoute ({ children }: { children: React.ReactNode }) {
 const { isAuthenticated } = useAuthStore()
@@ -111,7 +112,11 @@ export function App() {
           path={'/profile'}
           element={
             <PrivateRoute>
-              <Profile />
+              {isLargeScreen ? (
+                <Profile />
+              ) : (
+                <ProfileMobile />
+              )}
             </PrivateRoute>
           } 
         />
