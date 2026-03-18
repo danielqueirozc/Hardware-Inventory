@@ -1,24 +1,28 @@
-import { ArrowLeft, Eye, EyeOff, LogOut, Camera } from "lucide-react";
-import { Menu } from "./mobile/menu";
-import { Link } from "react-router-dom";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useState } from "react";
 import { useAuthStore } from "@/context/auth-store";
-import { toast } from "sonner"; // ou seu sistema de notificação
-import { ChangePasswordForm } from "./ui/change-password-form";
+import { Sidebar } from "./sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { InfoUser } from "./ui/info-user";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { Camera } from "lucide-react";
+import { Label } from "./ui/label";
 
 export function Profile() {
   const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false)
+  const [name, setName] = useState<string>('')
 
-  const { user, updateProfileImage, logout } = useAuthStore()
+  const { user, updateProfileImage } = useAuthStore()
+
+  // Inicializa o nome quando o user carregar
+  useEffect(() => {
+    if (user?.name) setName(user.name)
+  }, [user?.name])
 
   async function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
-    
-    if (!file) return
 
-    ////////// Validações //////////
-    if (!file.type.startsWith('image/')) {
+    // Validações
+    if(!file?.type.startsWith('image/')) {
       toast.error('Por favor, selecione apenas imagens!')
       return
     }
@@ -41,34 +45,28 @@ export function Profile() {
     }
   }
 
-  // URL da imagem - se tiver imageUrl usa ela, senão usa a padrão
-  console.log('User imageUrl:', user?.imageUrl)
-  const profileImageUrl = user?.imageUrl 
-    ? `http://localhost:3333${user.imageUrl}` 
-    : "https://github.com/shadcn.png"
+    const profileImageUrl = user?.imageUrl 
+      ? `http://localhost:3333${user.imageUrl}` 
+      : "https://github.com/shadcn.png"
 
   return (
-    <div className="flex flex-col md:gap-8 bg-gray-200 h-screen">
-       <header className="flex items-center justify-between bg-green px-10 py-4 md:py-8">
-          <div className="flex gap-4 items-center">
-          <Link 
-            className="text-white w-10 md:w-15 h-10 md:h-15 bg-green-700 rounded-full flex items-center justify-center"
-            to="/dashboard"
-          >
-             <ArrowLeft className="md:w-8 md:h-8" />
-          </Link>
-            <span className="text-white md:text-xl font-semibold">Perfil</span>
+    <div className="flex h-screen">
+      <Sidebar />
+
+      <div className="flex-1 flex flex-col gap-16 px-24 bg-[#FAFAFA]">
+        <header className="flex justify-between py-8 -mx-20 px-20 border-b-4 border-gray-300">
+          <div className="flex items-center gap-4">
+            <h2 className="text-gray-400 text-2xl font-bold">Estoque</h2>
           </div>
-    
-          <Menu />
+          <InfoUser />
         </header>
 
-      <main className="flex flex-col flex-1 justify-between items-center">
-        <div className="flex flex-col p-8">
-          <div className="flex flex-col items-center gap-4 pb-6 border-b">
-            <div className="relative rounded-full border-2 border-green">
-              <Avatar className="w-16 md:w-28 h-16 md:h-28">
-                <AvatarImage src={profileImageUrl} />
+        <main className="shadow rounded-4xl px-12 py-12 flex flex-col">
+          <div className="flex flex-col gap-16">
+           <div className="flex justify-between">
+             <div className="relative rounded-full border-2 border-green w-16 md:w-28 h-16 md:h-28">
+              <Avatar className="w-full h-full">
+                <AvatarImage src={profileImageUrl} className="object-cover" />
                 <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
               </Avatar>
 
@@ -93,23 +91,48 @@ export function Profile() {
               />
             </div>
 
-            <span className="text-green-800 md:text-xl font-medium">{user?.name || 'Usuário'}</span>
-            <p className="md:text-xl">{user?.email || 'email@exemplo.com'}</p>
+            <div className="grid grid-cols-2 gap-8">
+                <div className="flex flex-col gap-3">
+                  <Label>Nome</Label>
+                  <input
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label>Nome</Label>
+                  <input
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label>Nome</Label>
+                  <input
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+            </div>
+
+           </div>
+           <div className="flex justify-end">
+              <button className="bg-green font-medium px-8 py-2 cursor-pointer rounded-lg text-white">
+                Salvar
+              </button>
+            </div>
           </div>
-
-        <ChangePasswordForm />
-
-        </div>
-
-        <Link
-          onClick={logout}
-          className="mb-12 md:m-24 flex gap-2 text-red-500 md:text-lg font-medium" 
-          to='/login'
-        >
-          <LogOut className="h-5 md:h-6" />
-          Sair
-        </Link>
-      </main>
-    </div>
+        </main>
+      </div>
+      </div>
   )
-}
+} 
