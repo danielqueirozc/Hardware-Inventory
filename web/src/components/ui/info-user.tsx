@@ -1,5 +1,6 @@
 import { useAuthStore } from "@/context/auth-store";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Link } from "react-router-dom";
 
 export function InfoUser() {
   const { user } = useAuthStore()
@@ -9,7 +10,7 @@ export function InfoUser() {
     : "https://github.com/shadcn.png"
 
   return (
-     <div className="flex items-center gap-6">
+     <Link to='/profile' className="flex items-center gap-6">
         <div className="flex flex-col">
           <strong>
             {user?.name}
@@ -21,6 +22,6 @@ export function InfoUser() {
           <AvatarImage src={profileImageUrl} />
           <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
         </Avatar>
-      </div>
+      </Link>
   )
 }
