@@ -21,8 +21,43 @@ const [email, setEmail] = useState<string>('')
 
   // Inicializa o nome quando o user carregar
   useEffect(() => {
-    if (user?.name) setName(user.name)
-  }, [user?.name])
+     if (user?.name && user?.email) {
+      setName(user.name)
+      setEmail(user.email)
+    }
+
+  }, [user?.name, user?.email])
+
+  async function handleChangeInfoUser(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const userName = name
+    const userEmail = email
+
+
+    if (!name) alert('Nome em branco')
+
+    if (name !== user?.name) {
+      try {
+        await authServie.changeName(userName)
+      } catch (error) {
+        console.log('erro no changeName:', error)
+      }
+    }
+
+    if (email !== user?.email) {
+      const isValidEmail = emailSchema.safeParse(email)
+      if (!isValidEmail.success) {
+        alert('Email inválido')
+        return
+      }
+      try {
+        await authServie.changeEmail(userEmail)
+      } catch (error) {
+        console.log('erro no changeEmail:', error)
+      }
+    }
+  }
 
   async function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
