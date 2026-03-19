@@ -33,6 +33,8 @@ interface AuthStore {
   logout: () => void
   checkAuth: () => Promise<void>
   updateProfileImage: (file: File) => Promise<void>
+  changeName: (name: string) => Promise<void>
+  changeEmail: (email: string) => Promise<void>
   changePassword: (password: string) => Promise<void>
   verifyCurrentPassword: (currentPassword: string) => Promise<verifyCurrentPasswordResponseType>
 }
@@ -120,10 +122,31 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true })
 
         const response = await authServie.updateProfileImage(file)
+        console.log('resposta upload:', response)
 
         set(state => ({
           user: state.user ? { ...state.user, imageUrl: response.imageUrl } : null,
           isLoading: false,
+        }))
+      },
+
+      changeName: async (newName: string) => {
+        console.log(newName, 'context antes')
+        const response = await authServie.changeName(newName)
+        console.log(response, 'context depois')
+
+        set(state => ({
+          user: state.user? { ...state.user, name: response } : null
+        }))
+      },
+      
+      changeEmail: async (newEmail: string) => {
+        console.log(newEmail, 'context antes')
+        const response = await authServie.changeEmail(newEmail)
+        console.log(response, 'context depois')
+
+        set(state => ({
+          user: state.user? { ...state.user, email: response } : null
         }))
       },
 
