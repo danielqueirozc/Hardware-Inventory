@@ -120,7 +120,7 @@ const [email, setEmail] = useState<string>('')
           </div>
 
            <div className="flex justify-between">
-             <div className="relative rounded-full border-2 border-green w-16 md:w-28 h-16 md:h-28">
+             <div className="relative rounded-full border-2 border-green w-16 md:w-38 h-16 md:h-38">
               <Avatar className="w-full h-full">
                 <AvatarImage src={profileImageUrl} className="object-cover" />
                 <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
@@ -151,7 +151,7 @@ const [email, setEmail] = useState<string>('')
                 <div className="flex flex-col gap-3">
                   <Label>Nome</Label>
                   <input
-                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600"
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
                     name="name"
                     type="text"
                     value={name}
@@ -161,8 +161,8 @@ const [email, setEmail] = useState<string>('')
                 <div className="flex flex-col gap-3">
                   <Label>Nome</Label>
                   <input
-                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600"
-                    name="name"
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
+                    name="email"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -171,11 +171,11 @@ const [email, setEmail] = useState<string>('')
                 <div className="flex flex-col gap-3">
                   <Label>Nome</Label>
                   <input
-                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600"
-                    name="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
             </div>
