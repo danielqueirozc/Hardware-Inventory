@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Camera } from "lucide-react";
 import { Label } from "./ui/label";
+import { z } from 'zod'
+import { authServie } from "@/lib/axios";
 
 export function Profile() {
   const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false)
   const [name, setName] = useState<string>('')
+const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('123456')
 
   const { user, updateProfileImage } = useAuthStore()
 
