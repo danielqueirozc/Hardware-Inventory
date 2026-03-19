@@ -12,7 +12,7 @@ if (!connectionString || connectionString === 'undefined') {
 const adapter = new PrismaPg({ connectionString })
 const prisma = new PrismaClient({
   adapter,
-  log: ['query', 'error', 'warn']
+  // log: ['query', 'error', 'warn']
 })
 
 export { prisma }
