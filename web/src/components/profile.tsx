@@ -182,7 +182,7 @@ const [email, setEmail] = useState<string>('')
 
            </div>
            <div className="flex justify-end">
-              <button className="bg-green font-medium px-8 py-2 cursor-pointer rounded-lg text-white">
+              <button type="submit" className="bg-green font-medium px-8 py-2 cursor-pointer rounded-lg text-white">
                 Salvar
               </button>
             </div>
