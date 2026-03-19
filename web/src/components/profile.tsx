@@ -126,7 +126,7 @@ const [email, setEmail] = useState<string>('')
                 <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
               </Avatar>
 
-              {/* Botão de câmera sobreposto */}
+              {/* Botão de câmera */}
               <label 
                 htmlFor="profile-image-input"
                 className={`absolute bottom-0 right-0 w-6 h-6 bg-green rounded-full flex items-center justify-center cursor-pointer hover:bg-green-700 transition-colors ${
