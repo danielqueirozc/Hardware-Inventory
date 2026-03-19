@@ -27,6 +27,8 @@ import { editItem } from './http/routes/edit-item'
 import { createItem } from './http/routes/create-item'
 import { changePassword } from './http/routes/change-password'
 import { verifyCurrentPassword } from './http/routes/verify-current-password'
+import { changeName } from './http/routes/change-name'
+import { changeEmail } from './http/routes/change-email'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -84,6 +86,8 @@ app.register(updateProfileImage)
 app.register(deleteItem)
 app.register(editItem)
 app.register(createItem)
+app.register(changeName)
+app.register(changeEmail)
 app.register(changePassword)
 app.register(verifyCurrentPassword)
 
