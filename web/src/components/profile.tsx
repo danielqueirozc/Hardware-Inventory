@@ -17,6 +17,8 @@ const [email, setEmail] = useState<string>('')
 
   const { user, updateProfileImage } = useAuthStore()
 
+  const emailSchema = z.string().email()
+
   // Inicializa o nome quando o user carregar
   useEffect(() => {
     if (user?.name) setName(user.name)
