@@ -8,11 +8,11 @@ import { Camera } from "lucide-react";
 import { Label } from "./ui/label";
 import { z } from 'zod'
 import { authServie } from "@/lib/axios";
-
+ 
 export function Profile() {
   const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false)
   const [name, setName] = useState<string>('')
-const [email, setEmail] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('123456')
 
   const { user, updateProfileImage } = useAuthStore()
@@ -135,7 +135,7 @@ const [email, setEmail] = useState<string>('')
               >
                 <Camera className="w-3 h-3 text-white" />
               </label>
-              
+
               {/* input escondido */}
               <input
                 id="profile-image-input"
@@ -159,7 +159,7 @@ const [email, setEmail] = useState<string>('')
                   />
                 </div>
                 <div className="flex flex-col gap-3">
-                  <Label>Nome</Label>
+                  <Label>Email</Label>
                   <input
                     className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
                     name="email"
@@ -169,7 +169,7 @@ const [email, setEmail] = useState<string>('')
                   />
                 </div>
                 <div className="flex flex-col gap-3">
-                  <Label>Nome</Label>
+                  <Label>Senha</Label>
                   <input
                     className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
                     name="password"
@@ -178,7 +178,7 @@ const [email, setEmail] = useState<string>('')
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-            </div>
+                </div>
 
            </div>
            <div className="flex justify-end">
