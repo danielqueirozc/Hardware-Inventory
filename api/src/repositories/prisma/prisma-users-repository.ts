@@ -11,7 +11,31 @@ export class PrismaUsersRepository implements UsersRepository {
     return user
   }
 
+  async changeName(id: string, newName: string): Promise<User> {
+      console.log(newName, 'entrando no prisma')
+
+    const user = await prisma.user.update({
+      where: { id },
+      data: { name: newName }
+    })
+
+    return user
+  }
+
+  async changeEmail(id: string, newEmail: string): Promise<User> {
+
+      console.log(newEmail, 'entrando no prisma')
+
+    const user = await prisma.user.update({
+      where: { id },
+      data: { email: newEmail }
+    })
+
+    return user
+  }
+
   async changePassword(id: string, hashedPassword: string): Promise<User> {
+    
     const user = await prisma.user.update({
       where: { id },
       data: { password_hash: hashedPassword }
