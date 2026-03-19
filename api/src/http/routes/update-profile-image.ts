@@ -15,6 +15,7 @@ export const updateProfileImage: FastifyPluginAsyncZod = async (app) => {
         response: {
           200: z.object({
             message: z.string(),
+            imageUrl: z.string(),
           }),
           // 500: z.string({
             // message: z.string()
