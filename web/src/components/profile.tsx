@@ -164,8 +164,8 @@ const [email, setEmail] = useState<string>('')
                     className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
                     name="email"
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-3">
