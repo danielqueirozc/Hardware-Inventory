@@ -186,7 +186,7 @@ const [email, setEmail] = useState<string>('')
                 Salvar
               </button>
             </div>
-          </div>
+          </form>
         </main>
       </div>
       </div>
