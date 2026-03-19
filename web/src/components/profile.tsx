@@ -103,7 +103,22 @@ const [email, setEmail] = useState<string>('')
         </header>
 
         <main className="shadow rounded-4xl px-12 py-12 flex flex-col">
-          <div className="flex flex-col gap-16">
+          <form onSubmit={handleChangeInfoUser} className="flex flex-col gap-16">
+
+          <div className="relative flex border-b-2 border-gray-300 gap-16">
+           <div className="relative  before:absolute before:bottom-0 before:h-1 before:w-full before:rounded-t-lg before:bg-green">
+             <button className="font-bold text-green pb-4 px-8 cursor-pointer">
+              Perfil
+            </button>
+           </div>
+
+            <div className="relative  before:absolute before:bottom-0 before:h-1 before:w-full before:rounded-t-lg before:bg-green">
+             <button className="font-bold text-green pb-4 px-8 cursor-pointer">
+              Segurança
+            </button>
+           </div>
+          </div>
+
            <div className="flex justify-between">
              <div className="relative rounded-full border-2 border-green w-16 md:w-28 h-16 md:h-28">
               <Avatar className="w-full h-full">
