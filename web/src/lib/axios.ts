@@ -63,11 +63,33 @@ export const authServie = {
 
     return response.data
   },
+
+  changeName: async (newName: string) => {
+    console.log(newName, 'nome indo')
+
+    const response = await api.patch('/change-name', { newName })
+
+    // console.log(response, 'volta')
+
+    return response.data
+
+  },
   
+  changeEmail: async (newEmail: string) => {
+    console.log(newEmail, 'email indo nao sei pq esta indo nome tambem')
+
+    const response = await api.patch('/change-email', { newEmail })
+
+    // console.log(response, 'volta')
+
+    return response.data  
+
+  },
+
   changePassword: async (newPassword: string) => {
     console.log(newPassword, 'indo')
 
-    const response = await api.patch('change-password', { newPassword })
+    const response = await api.patch('/change-password', { newPassword })
 
     console.log(response, 'volta')
 
@@ -75,9 +97,10 @@ export const authServie = {
 
   },
 
+
   verifyCurrentPassword: async (currentPassword: string) => {
     console.log('antes de enviar', currentPassword)
-    const response = await api.post('verify-current-password', { currentPassword })
+    const response = await api.post('/verify-current-password', { currentPassword })
     console.log('depois de enviar', response)
     return response.data
 
