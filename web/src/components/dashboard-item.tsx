@@ -6,13 +6,36 @@ import { Label } from "./ui/label";
 import { DialogAddNew } from "./dialog-add-new-item";
 import { ItemDesktop } from "./item-desktop";
 import { useInventoryStore } from "@/context/inventory-store";
+import { useState } from "react";
+import type { ItemType } from "@/@types";
 
 interface DashboardItemType {
-  type: string
+  type: ItemType
 }
 
 export function DashboardItem({ type }: DashboardItemType) {
-  const { itemsByType } = useInventoryStore()
+  const [checkboxValueSelected,  setCheckboxValueSelected] = useState<string[]>([])
+
+  const { itemsByType, getItemsByFilter } = useInventoryStore()
+
+  async function handleSelected (value: string, checked: boolean) {
+    const newFilters = checked
+      ? [...checkboxValueSelected, value]
+      : checkboxValueSelected.filter(v => v !== value)
+
+    setCheckboxValueSelected(newFilters)
+
+    try {
+      await getItemsByFilter(newFilters, type )
+    } catch (error) {
+      console.error('nao foi')
+    }
+  }
+  
+  console.log(checkboxValueSelected)
+  console.log(itemsByType)
+
+  
 
   return (
     <div className="flex-1 flex flex-col gap-16 px-24 bg-[#FAFAFA]">
@@ -48,17 +71,17 @@ export function DashboardItem({ type }: DashboardItemType) {
                 </PopoverTrigger>
                 <PopoverContent className="flex flex-col gap-4 w-auto">
                   <div className="flex items-center space-x-2">
-                    <Checkbox className="border-green" id="terms" />
+                    <Checkbox className="border-green" value="Lab Línguas" onCheckedChange={checked => handleSelected('Lab Línguas', checked as boolean)} />
                     <Label className="text-gray-600" htmlFor="terms">Lab Línguas</Label>
                   </div>
 
                     <div className="flex items-center space-x-2">
-                    <Checkbox className="border-green" id="terms" />
+                    <Checkbox className="border-green" value="Lab Informática" onCheckedChange={checked => handleSelected('Lab Informática', checked as boolean)} />
                     <Label className="text-gray-600" htmlFor="terms">Lab Informática</Label>
                   </div>
 
                     <div className="flex items-center space-x-2">
-                    <Checkbox className="border-green" id="terms" />
+                    <Checkbox className="border-green" value="Lab Hardware" onCheckedChange={checked => handleSelected('Lab Hardware', checked as boolean)} />
                     <Label className="text-gray-600" htmlFor="terms">Lab Hardware</Label>
                   </div>
                 </PopoverContent>
@@ -83,7 +106,6 @@ export function DashboardItem({ type }: DashboardItemType) {
               { itemsByType.map(item => (
                 <ItemDesktop
                   key={item.id}
-                  id={item.id}
                   name={item.name}
                   amount={item.amount}
                   code={item.code}
