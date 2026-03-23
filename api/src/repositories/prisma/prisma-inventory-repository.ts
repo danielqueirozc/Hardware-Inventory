@@ -1,7 +1,6 @@
-import type { Item, ItemType, Prisma } from "../../generated/prisma/client";
+import type { Filter, Item, ItemType, Prisma } from "../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 import type { EditItemInput, GetItemsQuantityResponse, InventoryRepository } from "../inventory-repository";
-
 export class PrismaInventoryRepository implements InventoryRepository {
   async create(data: Prisma.ItemCreateInput): Promise<Item> {
     const item = await prisma.item.create({
@@ -9,14 +8,6 @@ export class PrismaInventoryRepository implements InventoryRepository {
     })
 
     return item
-  }
-
-  async getItemsByType(type: ItemType): Promise<Item[]> {
-    const items = await prisma.item.findMany({
-      where: { type }
-    })
-
-    return items
   }
 
   async getItemsQuantity(): Promise<GetItemsQuantityResponse> {
@@ -48,6 +39,24 @@ export class PrismaInventoryRepository implements InventoryRepository {
         throw new Error('Erro ao buscar quantidade de itens')
       }
   }
+  
+  async getItemsByType(type: ItemType): Promise<Item[]> {
+    const items = await prisma.item.findMany({
+      where: { type }
+    })
+
+    return items
+  }
+
+  async getItemsByFilter(filter: Filter[], type: ItemType): Promise<Item[]> {
+    console.log('esse e o resultado do prisma',filter)
+
+    const items = await prisma.item.findMany({
+      where: { type, filters: { hasSome: filter } }
+    })
+
+    return items
+  }
 
   async deleteItem(id: string): Promise<void> {
     const item  = await prisma.item.delete({
@@ -55,13 +64,13 @@ export class PrismaInventoryRepository implements InventoryRepository {
     })
   }
 
-  async editItem({ id, name, amount, filters }: EditItemInput): Promise<Item> {
+  async editItem({ id, name, amount, filter }: EditItemInput): Promise<Item> {
     const item = await prisma.item.update({
       where: { id },
       data: {
         name,
         amount,
-        filters: { set: filters } // set: no Prisma, para campos de array (enum array), você precisa usar a sintaxe set:
+        filters: { set: filter } // set: no Prisma, para campos de array (enum array), você precisa usar a sintaxe set:
       }
     })
 
