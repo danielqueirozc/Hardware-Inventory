@@ -29,20 +29,18 @@ import { changePassword } from './http/routes/change-password'
 import { verifyCurrentPassword } from './http/routes/verify-current-password'
 import { changeName } from './http/routes/change-name'
 import { changeEmail } from './http/routes/change-email'
+import { getItemByFilter } from './http/routes/get-item-by-filter'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
-// 1️⃣ PRIMEIRO: Configurar os compiladores (a base)
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
-// 2️⃣ SEGUNDO: CORS e outros plugins básicos
 app.register(fastifyCors, {
   origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 })
 
-// 3️⃣ TERCEIRO: Swagger (gera a especificação OpenAPI)
 app.register(fastifySwagger, {
   openapi: {
     info: {
@@ -54,7 +52,6 @@ app.register(fastifySwagger, {
   transform: jsonSchemaTransform,
 })
 
-// 4️⃣ QUARTO: JWT e outros middlewares
 app.register(fastifyJwt, {
   secret: env.JWT,
   cookie: {
@@ -76,7 +73,6 @@ app.register(fastifyStatic, {
   prefix: '/uploads/'
 })
 
-// 5️⃣ QUINTO: Registrar todas as rotas
 app.register(register)
 app.register(authenticate)
 app.register(validateToken)
@@ -92,7 +88,6 @@ app.register(changeEmail)
 app.register(changePassword)
 app.register(verifyCurrentPassword)
 
-// 6️⃣ POR ÚLTIMO: Scalar (consome a especificação gerada)
 app.register(ScalarApiReference, {
   routePrefix: '/docs',
 })
