@@ -14,8 +14,6 @@ export class VerifyCurrentPassword {
 
     if (!user) {
       return false
-
-      console.log('USER DOES NOT EXIST')
     }
 
     const isPasswordValid = compare(currentPassword, user.password_hash)
