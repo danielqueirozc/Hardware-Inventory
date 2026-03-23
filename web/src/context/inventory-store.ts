@@ -25,6 +25,7 @@ interface InventoryStoreType {
 
   getItemsQuantity: () => Promise<ItemsQuantityType>
   getItemsByType: (type: ItemType) => Promise<ItemProps[] | []>
+  getItemsByFilter: (filter: any, type: ItemType) => Promise<ItemProps[] | []>
   deleteItem: (id: string) => Promise<void>
   editItem: ({ id, name, amount, filters }: EditItemType) => Promise<void>
   createItem: ({ name, amount, type, filters }: CreateItemType) => Promise<void>
@@ -69,6 +70,20 @@ export const useInventoryStore = create<InventoryStoreType>()(
         throw error
       }
     },
+    getItemsByFilter: async (filter: any, type: ItemType) => {
+      try {
+        console.log('fetching items by filter:', filter)
+        const response = await inventoryService.getItemsByFilter(filter, type)
+
+        console.log('items by filter response:', response)
+
+        set({ itemsByType: response.items })
+
+        return response
+      } catch (error) {
+        throw error
+      }
+    },
     deleteItem: async (id: string) => {
       try {
         await inventoryService.deleteItem(id)
@@ -99,7 +114,6 @@ export const useInventoryStore = create<InventoryStoreType>()(
         throw error
       }
     },
-
     createItem: async ({ name, amount, type, filters }: CreateItemType) => {
       try {
        console.log('antes de mandar (context)', {name, amount, type, filters})
