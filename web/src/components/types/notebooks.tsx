@@ -16,7 +16,7 @@ export function Notebooks() {
     {isLargeScreen ? (
      <div className="flex h-screen">
       <Sidebar />
-      <DashboardItem type="Notebooks" />
+      <DashboardItem type="Notebook" />
      </div>
     ) : (
       <DashboardItemMobile />
