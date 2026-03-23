@@ -120,6 +120,14 @@ export const inventoryService = {
     return response.data.items
   },
 
+  getItemsByFilter: async (filter: any, type: ItemType) => {
+    console.log('passou aqui no axios', filter, type)
+    const response = await api.post(`/items/filter/${type}`, { filter })
+    console.log('API response for getItemsByFilter:', response)
+
+    return response.data
+  },
+  
   deleteItem: async (id: string) => {
     await api.delete(`/item/${id}`)
   },
