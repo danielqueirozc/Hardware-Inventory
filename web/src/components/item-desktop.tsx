@@ -1,13 +1,11 @@
 import { Pencil, Trash2 } from "lucide-react";
-
 interface ItemDesktopType {
   name: string
   code: string
   amount: number
-  id: string
 } 
 
-export function ItemDesktop({ code, name, amount, id }: ItemDesktopType) {
+export function ItemDesktop({ code, name, amount}: ItemDesktopType) {
 
   return (
     <tr className="border-b border-gray-300">
