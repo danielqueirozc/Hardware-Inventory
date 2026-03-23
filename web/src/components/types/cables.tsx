@@ -16,7 +16,7 @@ export function Cables() {
     {isLargeScreen ? (
      <div className="flex h-screen">
       <Sidebar />
-      <DashboardItem type="Cabos" />
+      <DashboardItem type="Cables" />
      </div>
     ) : (
       <DashboardItemMobile />
