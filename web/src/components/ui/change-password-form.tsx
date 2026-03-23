@@ -51,7 +51,6 @@ export function ChangePasswordForm() {
   [currentPassword])
 
   // Habilita o botão apenas se tudo estiver válido
-
   useEffect(() => {
     const isValid = 
       isCurrentPasswordValid === true &&
@@ -131,8 +130,9 @@ export function ChangePasswordForm() {
               </div>
           </div>
 
-          <button md:w-6
-            className="bg-green-700 text-white text-sm md:text-lg font-medium px-6 md:px-8 py-2 md:py-4 rounded-md mt-4" 
+          <button
+            disabled={!canSubmit}
+            className="md:w-6 bg-green-700 text-white text-sm md:text-lg font-medium px-6 md:px-8 py-2 md:py-4 rounded-md mt-4" 
             type="submit"
           >
             Mudar Senha
