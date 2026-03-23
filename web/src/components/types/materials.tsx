@@ -16,7 +16,7 @@ export function Materials() {
     {isLargeScreen ? (
      <div className="flex h-screen">
       <Sidebar />
-      <DashboardItem type="Materiais" />
+      <DashboardItem type="Materials" />
      </div>
     ) : (
       <DashboardItemMobile />
