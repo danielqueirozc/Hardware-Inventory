@@ -29,18 +29,18 @@ export function SearchInputMobile() {
           </PopoverTrigger>
           <PopoverContent className="flex flex-col gap-4 w-auto">
             <div className="flex items-center space-x-2">
-              <Checkbox className="border-green" id="terms" />
-              <Label className="text-gray-600" htmlFor="terms">Lab Línguas</Label>
+              <Checkbox className="border-green" value="Lab Línguas" onCheckedChange={checked => handleSelected('Lab Línguas', checked as boolean)} />
+              <Label className="text-gray-600">Lab Línguas</Label>
             </div>
 
               <div className="flex items-center space-x-2">
-              <Checkbox className="border-green" id="terms" />
-              <Label className="text-gray-600" htmlFor="terms">Lab Informática</Label>
+              <Checkbox className="border-green" value="Lab Informática" onCheckedChange={checked => handleSelected('Lab Informática', checked as boolean)} />
+              <Label className="text-gray-600">Lab Informática</Label>
             </div>
 
               <div className="flex items-center space-x-2">
-              <Checkbox className="border-green" id="terms" />
-              <Label className="text-gray-600" htmlFor="terms">Lab Hardware</Label>
+              <Checkbox className="border-green" value="Lab Hardware" onCheckedChange={checked => handleSelected('Lab Hardware', checked as boolean)} />
+              <Label className="text-gray-600">Lab Hardware</Label>
             </div>
           </PopoverContent>
         </Popover>
