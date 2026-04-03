@@ -17,7 +17,6 @@ export class GetItemByFilter {
   async execute({ filter, type }: GetItemByFilterRequest): Promise<GetItemByFilterResponse> {
     const item = await this.inventoryRepository.getItemsByFilter(filter, type)
 
-    console.log('resultado do service',item)
 
     return { item }
   }
