@@ -6,13 +6,10 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Camera } from "lucide-react";
 import { Label } from "./ui/label";
-import { z } from 'zod'
+import { z } from 'zod';
 import { authServie } from "@/lib/axios";
-import { Link } from "react-router-dom";
 import { ProfileSecurity } from "./profile-security";
 
-
- 
 export function Profile() {
   const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false)
   const [name, setName] = useState<string>('')
@@ -134,7 +131,8 @@ export function Profile() {
 
           { activeLink === 'profile' ? (
             <div className="flex flex-col gap-16">
-              <div className="flex justify-between max-[1250px]:items-center">
+              <div className="flex gap-4 justify-between max-[1250px]:items-center">
+
               <div className="relative rounded-full border-2 border-green w-16 md:w-38 h-16 md:h-38">
                 <Avatar className="w-full h-full">
                   <AvatarImage src={profileImageUrl} className="object-cover" />
@@ -163,36 +161,36 @@ export function Profile() {
               </div>
 
               <div className="grid grid-cols-1 min-[1250px]:grid-cols-2 gap-8">
-                  <div className="flex flex-col gap-3">
-                    <Label>Nome</Label>
-                    <input
-                      className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
-                      name="name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <Label>Email</Label>
-                    <input
-                      className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
-                      name="email"
-                      type="text"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <Label>Senha</Label>
-                    <input
-                      className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
-                      name="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
+                <div className="flex flex-col gap-3">
+                  <Label>Nome</Label>
+                  <input
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label>Email</Label>
+                  <input
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
+                    name="email"
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <Label>Senha</Label>
+                  <input
+                    className="px-4 py-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
 
