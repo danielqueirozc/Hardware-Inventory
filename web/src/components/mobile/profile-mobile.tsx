@@ -49,18 +49,18 @@ export function ProfileMobile() {
   return (
     <div className="flex flex-col gap-8 md:gap-0 bg-gray-200 h-screen">
       <header className="flex items-center justify-between bg-green px-10 py-4">
-          <div className="flex gap-4 items-center">
-          <Link 
-            className="text-white w-10 md:w-15 h-10 md:h-15 bg-green-700 rounded-full flex items-center justify-center"
-            to="/dashboard"
-          >
-             <ArrowLeft className="md:w-8 md:h-8" />
-          </Link>
-            <span className="text-white md:text-xl font-semibold">Perfil</span>
-          </div>
-    
-          <Menu />
-        </header>
+        <div className="flex gap-4 items-center">
+        <Link 
+          className="text-white w-10 md:w-15 h-10 md:h-15 bg-green-700 rounded-full flex items-center justify-center"
+          to="/dashboard"
+        >
+            <ArrowLeft className="md:w-8 md:h-8" />
+        </Link>
+          <span className="text-white md:text-xl font-semibold">Perfil</span>
+        </div>
+  
+        <Menu />
+      </header>
 
       <main className="flex flex-col flex-1 items-center">
         <div className="flex flex-col p-8">
