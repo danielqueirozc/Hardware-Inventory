@@ -10,7 +10,7 @@ export function DashboardItemMobile() {
 
   return (
     <div className="h-auto bg-gray-200">
-       <header className="flex items-center justify-items-start bg-green px-10 py-4 md:py-8">
+      <header className="flex items-center justify-items-start bg-green px-10 py-4 md:py-8">
         <div className="flex items-center justify-center gap-4">
           <Link 
             className="text-white w-10 md:w-15 h-10 md:h-15 bg-green-700 rounded-full flex items-center justify-center"
