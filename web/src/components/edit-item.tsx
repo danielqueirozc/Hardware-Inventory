@@ -18,7 +18,7 @@ interface EditItemType {
   filters: ItemFilterType[]
 }
 
-export function EditItem({ id, name, amount, filters }: EditItemType) {
+export function EditItem({ id, name, amount }: EditItemType) {
   const [selectedFilters, setSelectedFilters] = useState<ItemFilterType[]>([])
   const [inputName, setInputName] = useState(name)
   const [inputAmount, setInputAmount] = useState(amount)
