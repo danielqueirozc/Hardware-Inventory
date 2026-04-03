@@ -10,12 +10,10 @@ export async function ChangeEmail(request: FastifyRequest, reply: FastifyReply) 
   try {
     const userId = (request.user as { sub: string }).sub
 
-    // console.log(request.body)
     const { newEmail } = bodySchema.parse(request.body)
 
     const changeEmailService = makeChangeEmailService()
 
-    // console.log(newEmail, "chegou aqui")
 
     await changeEmailService.execute({
       id: userId,
