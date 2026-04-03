@@ -18,10 +18,8 @@ export class CreateItem {
 
   async execute({ name, amount, code, type, filters}: CreateItemRequest): Promise<CreateItemResponse> {
     try {
-      console.log('chegou aqui no service', { name, amount, type, filters })
       const item = await this.inventoryRepository.create({ name, amount, code, type, filters})
 
-      console.log('chegou aqui no retorno do service', item)
       
 
       return {
