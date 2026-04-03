@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const [ error, setError ] = useState('')
+  const [ _, setError ] = useState('')
 
   const { login } = useAuthStore()
 
