@@ -8,8 +8,6 @@ async function startServer() {
       port: env.PORT
     })
 
-    console.log(`🔥 HTTP server running on http://localhost:${env.PORT}`)
-    console.log(`📚 Doc API running on http://localhost:3333/docs`)
   } catch (error) {
     console.error('Error starting server:', error)
 }
