@@ -97,7 +97,7 @@ export function DashboardItem({ type }: DashboardItemType) {
                 <th className="text-center py-3 px-4 text-gray-900 font-extrabold">Deletar</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               { itemsByType.map(item => (
                 <ItemDesktop
                   key={item.id}
