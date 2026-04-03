@@ -50,7 +50,6 @@ export function Profile() {
       try {
         await authServie.changeName(userName)
       } catch (error) {
-        console.log('erro no changeName:', error)
       }
     }
 
@@ -63,7 +62,6 @@ export function Profile() {
       try {
         await authServie.changeEmail(userEmail)
       } catch (error) {
-        console.log('erro no changeEmail:', error)
       }
     }
   }
