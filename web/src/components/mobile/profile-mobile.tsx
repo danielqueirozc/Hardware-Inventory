@@ -62,7 +62,7 @@ export function ProfileMobile() {
           <Menu />
         </header>
 
-      <main className="flex flex-col flex-1 justify-between items-center">
+      <main className="flex flex-col flex-1 items-center">
         <div className="flex flex-col p-8">
           <div className="flex flex-col items-center gap-4 pb-6 border-b">
             <div className="relative rounded-full border-2 border-green">
