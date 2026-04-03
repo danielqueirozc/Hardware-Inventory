@@ -24,7 +24,7 @@ export function ProfileSecurity() {
   const [isCurrentPasswordValid, setIsCurrentPasswordValid] = useState<boolean | null>(null)
   
   // state button: habilita ou desabilita o botão de submit
-  const [canSubmit, setCanSubmit] = useState<boolean>(false)
+  const [_, setCanSubmit] = useState<boolean>(false)
 
   useEffect(() => {
     if (currentPassword.length === 0) {
