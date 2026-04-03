@@ -8,7 +8,6 @@ export async function VerifyCurrentPassword(request: FastifyRequest, reply: Fast
   })
 
   const { currentPassword } = bodySchema.parse(request.body)
-  console.log('chegou aqui', { currentPassword })
 
   try {
     const userId = (request.user as {sub:string}).sub
