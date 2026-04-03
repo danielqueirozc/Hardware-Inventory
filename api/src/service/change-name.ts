@@ -21,19 +21,16 @@ export class ChangeNameService {
         throw new Error('User not found')
       }
 
-      // console.log(newName, 'entrando no prisma')
 
 
       const user = await this.usersRepository.changeName(id, newName)
 
-      // console.log(user, 'saindo do prisma')
 
       return {
         user
       }
       
     } catch (error) {
-      console.log('ERROR IN SERVICE CHANGE NAME:', error)
       throw error
     }
   }
