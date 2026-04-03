@@ -36,7 +36,7 @@ export function Dashboard() {
         <main className="bg-[#FAFAFA] p-12 flex flex-col gap-8">
           <h1 className="text-2xl font-bold">Bem-Vindo, {user?.name}</h1>
           <span className="text-gray-400 font-medium">Overview</span>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 max-[1500px]:grid-cols-2 gap-3">
             {Object.keys(ITEM_CONFIG).map(key => {
               const type = key as ItemType
 
