@@ -37,7 +37,6 @@ export function Menu() {
   }
 
   function redirectToRoute(value: string) {
-    console.log(value)
     setSelectedValue(value) // Atualiza o valor selecionado
     
     const routeApi = MAP_ROUTES_API[value]
@@ -47,7 +46,6 @@ export function Menu() {
 
     if (route) {
       navigate(route)
-      console.log('Navegando para:', route)
     }
   }
 
