@@ -1,4 +1,4 @@
-import { ArrowLeft, Eye, EyeOff, LogOut, Camera } from "lucide-react";
+import { ArrowLeft, LogOut, Camera } from "lucide-react";
 import { Menu } from "./menu";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
