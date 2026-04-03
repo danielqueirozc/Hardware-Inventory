@@ -65,33 +65,27 @@ export const authServie = {
   },
 
   changeName: async (newName: string) => {
-    console.log(newName, 'nome indo')
 
     const response = await api.patch('/change-name', { newName })
 
-    // console.log(response, 'volta')
 
     return response.data
 
   },
   
   changeEmail: async (newEmail: string) => {
-    console.log(newEmail, 'email indo nao sei pq esta indo nome tambem')
 
     const response = await api.patch('/change-email', { newEmail })
 
-    // console.log(response, 'volta')
 
     return response.data  
 
   },
 
   changePassword: async (newPassword: string) => {
-    console.log(newPassword, 'indo')
 
     const response = await api.patch('/change-password', { newPassword })
 
-    console.log(response, 'volta')
 
     return response.data
 
@@ -99,9 +93,7 @@ export const authServie = {
 
 
   verifyCurrentPassword: async (currentPassword: string) => {
-    console.log('antes de enviar', currentPassword)
     const response = await api.post('/verify-current-password', { currentPassword })
-    console.log('depois de enviar', response)
     return response.data
 
   }
@@ -115,16 +107,20 @@ export const inventoryService = {
   },
   getItemsByType: async (type: ItemType) => {
     const response = await api.get(`/items/${type}`)
-    console.log('API response for getItemsByType:', response)
 
     return response.data.items
   },
 
   getItemsByFilter: async (filter: any, type: ItemType) => {
-    console.log('passou aqui no axios', filter, type)
     const response = await api.post(`/items/filter/${type}`, { filter })
-    console.log('API response for getItemsByFilter:', response)
 
+    return response.data
+  },
+
+  searchItem: async(q: string, type: ItemType) => {
+    const response = await api.get('items/search', { params: { q, type } })
+
+    
     return response.data
   },
   
@@ -133,18 +129,14 @@ export const inventoryService = {
   },
   
   editItem: async ({ id, name, amount, filters }: EditItemType) => {
-    console.log({id, name, amount, filters})
     const response = await api.put('/edit', { id, name, amount, filters })
 
-    console.log(response)
 
     return response.data
   },
 
   createItem: async ({ name, amount, type, filters }: CreateItemType) => {
-    console.log('antes de mandar', {name, amount, type, filters})
     const response = await api.post('/create', { name, amount, type, filters })
-    console.log('depois de mandar', {name, amount, type, filters})
 
 
     return response.data
