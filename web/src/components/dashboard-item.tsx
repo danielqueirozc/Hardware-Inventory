@@ -36,7 +36,7 @@ export function DashboardItem({ type, title}: DashboardItemType) {
     <div className="flex-1 flex flex-col gap-16 px-24 pb-8 bg-[#FAFAFA]">
       <header className="flex justify-between py-8 -mx-20 px-20 border-b-4 border-gray-300">
         <div className="flex items-center gap-4">
-          <h1 className="text-green font-bold text-3xl">{type}</h1>
+          <h1 className="text-green font-bold text-3xl">{title}</h1>
           <div className="bg-gray-400 font-extrabold w-0.5 h-6" />
           <h2 className="text-gray-400 text-2xl font-bold">Estoque</h2>
         </div>
