@@ -46,16 +46,8 @@ export function DashboardItem({ type }: DashboardItemType) {
       <main className="border-3 border-gray-300 rounded-4xl px-12 pt-8 flex flex-col overflow-hidden">
         <div className="flex items-center justify-between">
           <div className="flex gap-8">
-            <div className="flex items-center relative w-120 border-2 border-green-500 rounded-lg h-10">
-              <Search
-                className="absolute left-3 text-green-500 w-5 h-5 pointer-events-none"
-              />
-              <input
-                className="pl-9 placeholder:text-gray-400 md:placeholder:text-lg placeholder:font-medium w-full h-full rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
-                type="text"
-                placeholder="Pesquisar"
-              />
-            </div>
+            
+            <SearchInput type={type} />
 
               <Popover>
                 <PopoverTrigger asChild>
