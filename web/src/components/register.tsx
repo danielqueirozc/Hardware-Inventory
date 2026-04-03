@@ -13,18 +13,11 @@ export function Register() {
     
     event.preventDefault()
     
-
     const formData = new FormData(event.currentTarget)
 
     const name = formData.get('name')
     const email = formData.get('email')
     const password = formData.get('password')
-
-    console.log({
-      name,
-      email,
-      password,
-    })
 
     try {
       await register({
@@ -41,7 +34,6 @@ export function Register() {
         setError(error.message)
       }
 
-      console.log(error)
   }
 }
 
