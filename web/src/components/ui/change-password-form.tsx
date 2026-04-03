@@ -64,7 +64,7 @@ export function ChangePasswordForm() {
 
 
     try {
-      const result = await authServie.changePassword(newPassword)
+      await authServie.changePassword(newPassword)
 
     } catch (error) {
       console.error('Erro ao trocar senha:', error)
