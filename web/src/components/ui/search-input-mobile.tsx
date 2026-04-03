@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 import { Search, SlidersHorizontal } from "lucide-react";
 
 import { Checkbox } from "./checkbox";
@@ -9,7 +12,30 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
+import { useInventoryStore } from '@/context/inventory-store';
+import type { ItemType } from '@/@types';
+
 export function SearchInputMobile() {
+  const [checkboxValueSelected,  setCheckboxValueSelected] = useState<string[]>([])
+
+  const { getItemsByFilter } = useInventoryStore()
+
+  const { type } = useParams<{ type: ItemType }>() as { type: ItemType }
+  
+  async function handleSelected (value: string, checked: boolean) {
+    const newFilters = checked
+      ? [...checkboxValueSelected, value]
+      : checkboxValueSelected.filter(v => v !== value)
+
+    setCheckboxValueSelected(newFilters)
+
+    try {
+      await getItemsByFilter(newFilters, type )
+    } catch (error) {
+      console.error('nao foi')
+    }
+  }
+  
   return (
      <div className="flex items-center relative w-full md:h-12 border border-green rounded-lg h-8">
         <Search
