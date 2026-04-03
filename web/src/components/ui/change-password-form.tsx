@@ -36,9 +36,7 @@ export function ChangePasswordForm() {
       try {
         const result = await authServie.verifyCurrentPassword(currentPassword)
         setIsCurrentPasswordValid(result.valid)
-        console.log(result.valid)
       } catch (error) {
-        console.log('Erro ao validar senha', error)
         setIsCurrentPasswordValid(false)
       } finally {
         setIsValidatingCurrent(false)
