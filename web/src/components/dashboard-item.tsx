@@ -13,7 +13,7 @@ interface DashboardItemType {
   type: ItemType
 }
 
-export function DashboardItem({ type }: DashboardItemType) {
+export function DashboardItem({ type, title}: DashboardItemType) {
   const [checkboxValueSelected,  setCheckboxValueSelected] = useState<string[]>([])
 
   const { itemsByType, getItemsByFilter } = useInventoryStore()
