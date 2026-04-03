@@ -47,7 +47,6 @@ export function EditItem({ id, name, amount, filters }: EditItemType) {
   }
 
   async function handleSave() {
-    console.log(selectedFilters)
     try {
       await editItem({
         id,
