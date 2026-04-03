@@ -6,7 +6,7 @@ export function InfoUser() {
   const { user } = useAuthStore()
 
   const profileImageUrl = user?.imageUrl 
-    ? `http://localhost:3333${user.imageUrl}` 
+    ? `${import.meta.env.VITE_API_URL || 'http://localhost:3333'}${user.imageUrl}`
     : "https://github.com/shadcn.png"
 
   return (
