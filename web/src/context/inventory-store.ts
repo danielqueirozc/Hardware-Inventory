@@ -26,6 +26,7 @@ interface InventoryStoreType {
   getItemsQuantity: () => Promise<ItemsQuantityType>
   getItemsByType: (type: ItemType) => Promise<ItemProps[] | []>
   getItemsByFilter: (filter: any, type: ItemType) => Promise<ItemProps[] | []>
+  searchItem: (search: string, type: ItemType) => Promise<ItemProps[] | []>
   deleteItem: (id: string) => Promise<void>
   editItem: ({ id, name, amount, filters }: EditItemType) => Promise<void>
   createItem: ({ name, amount, type, filters }: CreateItemType) => Promise<void>
@@ -45,7 +46,6 @@ export const useInventoryStore = create<InventoryStoreType>()(
     getItemsQuantity: async () => {
      try {
        const response = await inventoryService.getItemsQuantity()
-       console.log(response)
 
         set({ itemsQuantity: response })
 
@@ -55,13 +55,10 @@ export const useInventoryStore = create<InventoryStoreType>()(
         throw error
      }
     },
-
     getItemsByType: async (type: ItemType) => {
       try {
-        console.log('fetching items by type:', type)
         const response = await inventoryService.getItemsByType(type)
 
-        console.log('items by type response:', response)
 
         set({ itemsByType: response })
 
@@ -72,16 +69,26 @@ export const useInventoryStore = create<InventoryStoreType>()(
     },
     getItemsByFilter: async (filter: any, type: ItemType) => {
       try {
-        console.log('fetching items by filter:', filter)
         const response = await inventoryService.getItemsByFilter(filter, type)
 
-        console.log('items by filter response:', response)
 
         set({ itemsByType: response.items })
 
         return response
       } catch (error) {
         throw error
+      }
+    },
+    searchItem: async (search: string, type: ItemType) => {
+      try {
+        const response = await inventoryService.searchItem(search, type)
+
+
+        set({ itemsByType: response.items })
+        return response.items
+
+      } catch {
+        throw new Error
       }
     },
     deleteItem: async (id: string) => {
@@ -100,7 +107,6 @@ export const useInventoryStore = create<InventoryStoreType>()(
     },
     editItem: async ({ id, name, amount, filters }: EditItemType) => {
       try {
-        console.log({id, name, amount, filters})        
         const response = await inventoryService.editItem({ id, name, amount, filters })
 
         set(state => ({
@@ -116,11 +122,9 @@ export const useInventoryStore = create<InventoryStoreType>()(
     },
     createItem: async ({ name, amount, type, filters }: CreateItemType) => {
       try {
-       console.log('antes de mandar (context)', {name, amount, type, filters})
         
         const response = await inventoryService.createItem({ name, amount, type, filters })
 
-        console.log('depois de mandar', response)
 
 
         set(state => ({
@@ -129,6 +133,6 @@ export const useInventoryStore = create<InventoryStoreType>()(
       } catch (error) {
         throw error
       }
-    } 
+    },
   }), 
 )
