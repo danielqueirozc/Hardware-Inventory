@@ -43,7 +43,7 @@ export function ProfileMobile() {
 
   // URL da imagem - se tiver imageUrl usa ela, senão usa a padrão
   const profileImageUrl = user?.imageUrl 
-    ? `http://localhost:3333${user.imageUrl}` 
+    ? `${import.meta.env.VITE_API_URL || 'http://localhost:3333'}${user.imageUrl}`
     : "https://github.com/shadcn.png"
 
   return (
