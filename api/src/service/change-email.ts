@@ -21,19 +21,16 @@ export class ChangeEmailService {
         throw new Error('User not found')
       }
 
-      // console.log(newEmail, 'entrando no prisma')
 
 
       const user = await this.usersRepository.changeEmail(id, newEmail)
 
-      // console.log(user, 'saindo do prisma')
 
       return {
         user
       }
       
     } catch (error) {
-      console.log('ERROR IN SERVICE CHANGE NAME:', error)
       throw error
     }
   }
