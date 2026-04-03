@@ -92,8 +92,8 @@ export function ProfileMobile() {
               />
             </div>
 
-            <span className="text-green-800 md:text-xl font-medium">{user?.name || 'Usuário'}</span>
-            <p className="md:text-xl">{user?.email || 'email@exemplo.com'}</p>
+            <span className="text-green-800 md:text-lg font-medium">{user?.name || 'Usuário'}</span>
+            <p className="md:text-lg">{user?.email || 'email@exemplo.com'}</p>
           </div>
 
         <ChangePasswordForm />
