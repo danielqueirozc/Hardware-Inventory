@@ -1,4 +1,4 @@
-import { Eye } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { Label } from "./ui/label";
 import { useEffect, useState } from "react";
 import { authServie } from "@/lib/axios";
@@ -7,6 +7,7 @@ export function ProfileSecurity() {
   // mudar de password para text nos inputs
   const [currentPasswordClicked, setCurrentPasswordClicked] = useState<boolean>(false)
   const [newPasswordClicked, setNewPasswordClicked] = useState<boolean>(false)
+
 
   // trocar a senha
   const [ currentPassword, setCurrentPassword ] = useState<string>('')
@@ -101,29 +102,31 @@ export function ProfileSecurity() {
                   { currentPasswordClicked ? (
                     <EyeOff className="text-green" />
                   ) : (
-                  <Eye className="text-green" />
+                    <Eye className="text-green" />
+                  ) }
                 </button>
               </div>
 
             </div>
            <div className="flex flex-col gap-3">
               <Label>Nova Senha</Label>
-             <div className="flex items-center justify-between gap-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96 px-4">
-               <input
-                className=" py-2 w-full focus:outline-none"
-                name="name"
+              <div className="flex items-center justify-between gap-2 rounded-lg border border-green-600 focus:outline-none focus:ring focus:ring-green-600 w-96 px-4">
+                <input
+                  className=" py-2 w-full focus:outline-none"
+                  name="name"
                   type={newPasswordClicked ? 'text' : 'password'}
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
 
                 <button type="button" onClick={() => setNewPasswordClicked(!newPasswordClicked)} className="cursor-pointer border-l-2 border-gray-300 pl-2">
                   { newPasswordClicked ? (
                     <EyeOff className="text-green" />
                   ) : (
-                <Eye className="text-green" />
-              </button>
-             </div>
+                    <Eye className="text-green" />
+                  ) }
+                </button>
+              </div>
              
             </div>
         </div>
