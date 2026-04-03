@@ -15,7 +15,6 @@ export function DashboardItem({ amount, type, itemType, icon, ...props  }: Dashb
   const { getItemsByType } = useInventoryStore()
 
   function handleClick() {
-    console.log('DashboardItem clicked:', itemType)
     getItemsByType(itemType)
   }
 
