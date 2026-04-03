@@ -105,7 +105,7 @@ export function ChangePasswordForm() {
 
           <div className="flex flex-col gap-3 w-full">
             <Label className="md:text-lg">Nova Senha</Label>
-              <div className="flex items-center justify-between gap-2 border border-green-500 rounded-lg px-3 py-2 md:py-4 bg-white">
+              <div className="flex items-center justify-between gap-2 border border-green-500 rounded-lg px-3 py-2 bg-white">
                 <input
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="w-full h-full focus:outline-none placeholder:text-sm md:placeholder:text-lg"
