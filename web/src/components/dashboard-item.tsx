@@ -31,11 +31,6 @@ export function DashboardItem({ type }: DashboardItemType) {
       console.error('nao foi')
     }
   }
-  
-  console.log(checkboxValueSelected)
-  console.log(itemsByType)
-
-  
 
   return (
     <div className="flex-1 flex flex-col gap-16 px-24 bg-[#FAFAFA]">
