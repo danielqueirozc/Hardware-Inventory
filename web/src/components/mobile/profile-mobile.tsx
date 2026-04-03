@@ -47,8 +47,8 @@ export function ProfileMobile() {
     : "https://github.com/shadcn.png"
 
   return (
-    <div className="flex flex-col md:gap-8 bg-gray-200 h-screen">
-       <header className="flex items-center justify-between bg-green px-10 py-4 md:py-8">
+    <div className="flex flex-col gap-8 md:gap-0 bg-gray-200 h-screen">
+      <header className="flex items-center justify-between bg-green px-10 py-4">
           <div className="flex gap-4 items-center">
           <Link 
             className="text-white w-10 md:w-15 h-10 md:h-15 bg-green-700 rounded-full flex items-center justify-center"
