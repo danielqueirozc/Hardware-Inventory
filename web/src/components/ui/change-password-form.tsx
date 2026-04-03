@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { Label } from "./label"
 import { Eye, EyeOff } from "lucide-react"
 import { authServie } from "@/lib/axios"
-import { toast } from "sonner"
 
 export function ChangePasswordForm() {
   const [isClickedActuallyPassword, setIsClickedActuallyPassword] = useState<boolean>(false)
