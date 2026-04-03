@@ -122,7 +122,6 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true })
 
         const response = await authServie.updateProfileImage(file)
-        console.log('resposta upload:', response)
 
         set(state => ({
           user: state.user ? { ...state.user, imageUrl: response.imageUrl } : null,
@@ -131,9 +130,7 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       changeName: async (newName: string) => {
-        console.log(newName, 'context antes')
         const response = await authServie.changeName(newName)
-        console.log(response, 'context depois')
 
         set(state => ({
           user: state.user? { ...state.user, name: response } : null
@@ -141,9 +138,7 @@ export const useAuthStore = create<AuthStore>()(
       },
       
       changeEmail: async (newEmail: string) => {
-        console.log(newEmail, 'context antes')
         const response = await authServie.changeEmail(newEmail)
-        console.log(response, 'context depois')
 
         set(state => ({
           user: state.user? { ...state.user, email: response } : null
@@ -151,9 +146,7 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       changePassword: async (newPassword: string) => {
-        console.log(newPassword, 'context antes')
         const response = await authServie.changePassword(newPassword)
-        console.log(response, 'context depois')
 
         set(state => ({
           user: state.user? { ...state.user, password_hash: response } : null
@@ -161,9 +154,7 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       verifyCurrentPassword: async (currentPassword: string) => {
-        console.log('context antes', currentPassword)
         const response = await authServie.verifyCurrentPassword(currentPassword)
-        console.log('context depois', currentPassword)
 
         return response
       }
