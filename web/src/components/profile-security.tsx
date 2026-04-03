@@ -108,7 +108,7 @@ export function ProfileSecurity() {
                <input
                 className=" py-2 w-full focus:outline-none"
                 name="name"
-                type={isClicked ? 'text' : 'password'}
+                  type={newPasswordClicked ? 'text' : 'password'}
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
