@@ -42,7 +42,6 @@ export function Dashboard() {
 
               const config = ITEM_CONFIG[type]
               const itemsAmount = itemsQuantity?.[type] || 0
-              // console.log(itemsAmount)
 
               return (
                 <DashboardType
