@@ -3,7 +3,7 @@ import { useInventoryStore } from "@/context/inventory-store";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-interface DashboardItemProps extends React.ComponentProps<'div'> {
+interface DashboardItemProps extends React.ComponentProps<'a'> {
   amount: number
   type: string
   itemType: ItemType
