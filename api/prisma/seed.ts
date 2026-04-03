@@ -12,12 +12,9 @@ interface ItemData {
 }
 
 async function main() {
-  console.log('Start seeding...');
 
   // Apagar todos os dados da tabela items
-  console.log('Deleting all items...');
   const deleteResult = await prisma.item.deleteMany({});
-  console.log(`${deleteResult.count} items deleted.`);
 
   // Itens reais organizados por tipo
   const items: ItemData[] = [
@@ -69,7 +66,6 @@ async function main() {
     { code: 'CAB-010', name: 'Adaptador DVI para HDMI', amount: 12, type: 'Cables', filters: ['Lab_Informática', 'Lab_Hardware'] },
   ];
 
-  console.log(`Creating ${items.length} items...`);
 
   for (const item of items) {
     await prisma.item.create({
@@ -83,7 +79,6 @@ async function main() {
     });
   }
 
-  console.log('Seeding finished.');
 }
 
 main()
