@@ -58,6 +58,15 @@ export class PrismaInventoryRepository implements InventoryRepository {
     return items
   }
 
+  async searchItem(q: string, type?: ItemType): Promise<Item[]> {
+
+      const result = await prisma.item.findMany({
+        where: { name: { contains: q, mode: 'insensitive' }, ...(type && { type }) }
+      })
+  
+      return result
+  }
+
   async deleteItem(id: string): Promise<void> {
     const item  = await prisma.item.delete({
       where: { id }
