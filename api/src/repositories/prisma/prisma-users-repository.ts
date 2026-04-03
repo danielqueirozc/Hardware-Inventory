@@ -1,4 +1,4 @@
-import type { Prisma, User } from "../../generated/prisma/client";
+import type { Item, Prisma, User } from "../../generated/prisma/client";
 import { prisma } from "../../lib/prisma";
 import type { UsersRepository } from "../users-repository";
 
@@ -12,7 +12,6 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   async changeName(id: string, newName: string): Promise<User> {
-      console.log(newName, 'entrando no prisma')
 
     const user = await prisma.user.update({
       where: { id },
@@ -24,7 +23,6 @@ export class PrismaUsersRepository implements UsersRepository {
 
   async changeEmail(id: string, newEmail: string): Promise<User> {
 
-      console.log(newEmail, 'entrando no prisma')
 
     const user = await prisma.user.update({
       where: { id },
