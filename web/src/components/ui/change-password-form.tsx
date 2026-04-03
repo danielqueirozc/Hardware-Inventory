@@ -85,7 +85,7 @@ export function ChangePasswordForm() {
               </p>
             ) }
 
-            <div className={`flex items-center justify-between gap-2 border border-green-500 ${isCurrentPasswordValid === true || isCurrentPasswordValid === null ? 'border-green-500' : 'border-red-500' } rounded-lg px-3 py-2 md:py-4 bg-white`}>
+            <div className={`flex items-center justify-between gap-2 border border-green-500 ${isCurrentPasswordValid === true || isCurrentPasswordValid === null ? 'border-green-500' : 'border-red-500' } rounded-lg px-3 py-2 bg-white`}>
               <input
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 className="w-full h-full focus:outline-none placeholder:text-sm md:placeholder:text-lg"
