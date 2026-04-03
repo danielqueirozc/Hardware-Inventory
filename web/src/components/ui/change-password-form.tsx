@@ -125,7 +125,7 @@ export function ChangePasswordForm() {
 
           <button
             disabled={!canSubmit}
-            className="md:w-6 bg-green-700 text-white text-sm md:text-lg font-medium px-6 md:px-8 py-2 md:py-4 rounded-md mt-4" 
+            className="bg-green-700 text-white text-sm md:text-lg font-medium px-6 md:px-8 py-2 md:py-4 rounded-md mt-4" 
             type="submit"
           >
             Mudar Senha
