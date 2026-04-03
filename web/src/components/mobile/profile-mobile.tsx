@@ -42,7 +42,6 @@ export function ProfileMobile() {
   }
 
   // URL da imagem - se tiver imageUrl usa ela, senão usa a padrão
-  console.log('User imageUrl:', user?.imageUrl)
   const profileImageUrl = user?.imageUrl 
     ? `http://localhost:3333${user.imageUrl}` 
     : "https://github.com/shadcn.png"
