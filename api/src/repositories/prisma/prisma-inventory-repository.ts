@@ -24,7 +24,6 @@ export class PrismaInventoryRepository implements InventoryRepository {
         return acc
       }, {} as Record<ItemType, number>) // Tipagem no valor inicial
 
-      // console.log(overview)
 
       return {
         Component: overview.Component || 0,
@@ -49,7 +48,6 @@ export class PrismaInventoryRepository implements InventoryRepository {
   }
 
   async getItemsByFilter(filter: Filter[], type: ItemType): Promise<Item[]> {
-    console.log('esse e o resultado do prisma',filter)
 
     const items = await prisma.item.findMany({
       where: { type, filters: { hasSome: filter } }
@@ -65,7 +63,7 @@ export class PrismaInventoryRepository implements InventoryRepository {
       })
   
       return result
-  }
+    }
 
   async deleteItem(id: string): Promise<void> {
     const item  = await prisma.item.delete({
