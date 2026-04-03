@@ -14,7 +14,6 @@ interface ItemType {
 export function ItemMobile({  name, code, amount, id, filters }: ItemType) {
   const { deleteItem } = useInventoryStore()
 
-  // console.log(filters)
 
   return (
     <div className="flex flex-col border-x border-gray-300 rounded-lg bg-white shadow-[0_4px_6px_-1px] shadow-gray-400 md:px-2 md:py-4">
