@@ -90,11 +90,11 @@ export function DashboardItem({ type }: DashboardItemType) {
           <table className="w-full mt-6">
             <thead>
               <tr className="border-b border-gray-400">
-                <th className="text-left py-3 px-4 text-gray-900 font-extrabold">Código</th>
-                <th className="text-left py-3 px-4 text-gray-900 font-extrabold">Componente</th>
-                <th className="text-left py-3 px-4 text-gray-900 font-extrabold">Estoque</th>
-                <th className="text-left py-3 px-4 text-gray-900 font-extrabold">Editar</th>
-                <th className="text-left py-3 px-4 text-gray-900 font-extrabold">Deletar</th>
+                <th className="text-center py-3 px-4 text-gray-900 font-extrabold">Código</th>
+                <th className="text-center py-3 px-4 text-gray-900 font-extrabold">Componente</th>
+                <th className="text-center py-3 px-4 text-gray-900 font-extrabold">Estoque</th>
+                <th className="text-center py-3 px-4 text-gray-900 font-extrabold">Editar</th>
+                <th className="text-center py-3 px-4 text-gray-900 font-extrabold">Deletar</th>
               </tr>
             </thead>
             <tbody>
