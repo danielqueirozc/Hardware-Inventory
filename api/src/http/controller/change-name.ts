@@ -10,13 +10,11 @@ export async function ChangeName(request: FastifyRequest, reply: FastifyReply) {
   try {
     const userId = (request.user as { sub: string }).sub
 
-    console.log(request.body)
     const { newName } = bodySchema.parse(request.body)
 
     const changeNameService = makeChangeNameService()
 
 
-    // console.log(newName, "chegou aqui")
 
     await changeNameService.execute({
       id: userId,
