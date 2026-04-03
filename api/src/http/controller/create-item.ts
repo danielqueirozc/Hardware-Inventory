@@ -12,7 +12,6 @@ export async function CreateItem(request: FastifyRequest, reply: FastifyReply) {
   })
 
   const { name, amount, type, filters } = bodySchema.parse(request.body)
-  console.log('chegou aqui', { name, amount, type, filters })
 
   try {
     const createItemService = MakeCreateItemService()
