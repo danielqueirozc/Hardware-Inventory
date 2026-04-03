@@ -34,7 +34,6 @@ export function App() {
       
       const token = useAuthStore.getState().token
       
-      console.log('Token após rehydrate:', token)
       
       if (token) {
         const checkAuth = useAuthStore.getState().checkAuth
@@ -53,7 +52,6 @@ export function App() {
 
     return () => window.removeEventListener('resize', handleResize)
   }, [isLargeScreen])
-  console.log(isLargeScreen)
 
   
   if (isLoading) return <p>Carregando...</p>
