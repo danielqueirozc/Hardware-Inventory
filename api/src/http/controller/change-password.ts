@@ -11,13 +11,11 @@ export async function ChangePassword(request: FastifyRequest, reply: FastifyRepl
     const userId = (request.user as { sub: string }).sub
 
     
-    console.log(request.body)
     const { newPassword } = bodySchema.parse(request.body)
 
     const changePasswordService = makeChangePasswordService()
 
 
-    console.log(newPassword)
 
     await changePasswordService.execute({
       id: userId,
