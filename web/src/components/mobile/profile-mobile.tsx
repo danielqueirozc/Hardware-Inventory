@@ -66,7 +66,7 @@ export function ProfileMobile() {
         <div className="flex flex-col p-8">
           <div className="flex flex-col items-center gap-4 pb-6 border-b">
             <div className="relative rounded-full border-2 border-green">
-              <Avatar className="w-16 md:w-28 h-16 md:h-28">
+              <Avatar className="w-16 md:w-26 h-16 md:h-28">
                 <AvatarImage src={profileImageUrl} />
                 <AvatarFallback>{user?.name?.charAt(0) || 'CN'}</AvatarFallback>
               </Avatar>
