@@ -30,6 +30,7 @@ import { verifyCurrentPassword } from './http/routes/verify-current-password'
 import { changeName } from './http/routes/change-name'
 import { changeEmail } from './http/routes/change-email'
 import { getItemByFilter } from './http/routes/get-item-by-filter'
+import { searchItem } from './http/routes/search-item'
  
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -87,6 +88,7 @@ app.register(changeName)
 app.register(changeEmail)
 app.register(changePassword)
 app.register(verifyCurrentPassword)
+app.register(searchItem)
 
 app.register(ScalarApiReference, {
   routePrefix: '/docs',
