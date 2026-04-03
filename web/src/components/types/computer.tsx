@@ -16,7 +16,7 @@ export function Computers() {
     {isLargeScreen ? (
      <div className="flex h-screen">
       <Sidebar />
-      <DashboardItem type="Computer" />
+      <DashboardItem type="Computer" title="Computadores" />
      </div>
     ) : (
       <DashboardItemMobile />
