@@ -96,7 +96,10 @@ export function ProfileSecurity() {
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
 
-                <button type="button" onClick={() => setIsClicked(!isClicked)} className="cursor-pointer border-l-2 border-gray-300 pl-2">
+                <button type="button" onClick={() => setCurrentPasswordClicked(!currentPasswordClicked)} className="cursor-pointer border-l-2 border-gray-300 pl-2">
+                  { currentPasswordClicked ? (
+                    <EyeOff className="text-green" />
+                  ) : (
                   <Eye className="text-green" />
                 </button>
               </div>
