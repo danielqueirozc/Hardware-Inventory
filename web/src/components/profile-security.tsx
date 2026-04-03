@@ -5,7 +5,8 @@ import { authServie } from "@/lib/axios";
 
 export function ProfileSecurity() {
   // mudar de password para text nos inputs
-  const [isClicked, setIsClicked] = useState<boolean>(false)
+  const [currentPasswordClicked, setCurrentPasswordClicked] = useState<boolean>(false)
+  const [newPasswordClicked, setIsClicked] = useState<boolean>(false)
 
   // trocar a senha
   const [ currentPassword, setCurrentPassword ] = useState<string>('')
