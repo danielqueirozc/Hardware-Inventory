@@ -16,7 +16,6 @@ export async function GetItemsByType(request: FastifyRequest, reply: FastifyRepl
       type
     })
 
-    console.log('Service result:', JSON.stringify(result, null, 2))
 
     return reply.status(200).send(result)
 
