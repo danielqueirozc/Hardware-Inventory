@@ -134,7 +134,7 @@ export function Profile() {
 
           { activeLink === 'profile' ? (
             <div className="flex flex-col gap-16">
-              <div className="flex justify-between">
+              <div className="flex justify-between max-[1250px]:items-center">
               <div className="relative rounded-full border-2 border-green w-16 md:w-38 h-16 md:h-38">
                 <Avatar className="w-full h-full">
                   <AvatarImage src={profileImageUrl} className="object-cover" />
