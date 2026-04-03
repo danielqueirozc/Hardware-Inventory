@@ -60,17 +60,13 @@ export function ProfileSecurity() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log('esta indo')
 
     // if (!canSubmit) return
 
-    console.log('esta indo aqui tb')
 
 
     try {
-      console.log('mandando o password', newPassword)
-      const result = await authServie.changePassword(newPassword)
-      console.log('recebendo', result)
+      await authServie.changePassword(newPassword)
 
     } catch (error) {
       console.error('Erro ao trocar senha:', error)
