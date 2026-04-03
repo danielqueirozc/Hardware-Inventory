@@ -28,20 +28,17 @@ const bodySchema = z.object({
   )
 })
 
-console.log(request.body)
 
 try {
   const { filter } = bodySchema.parse(request.body)
   const { type } = paramsSchema.parse(request.params)
 
 
-  console.log(filter)
 
   const getItemByFilter = makeGetItemByFilter()
 
   const result = await getItemByFilter.execute({ filter, type })
 
-  // console.log('esse e o resultado',result)
 
   return reply.status(200).send({ items: result.item })
 
