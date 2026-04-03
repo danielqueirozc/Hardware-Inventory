@@ -74,7 +74,7 @@ export function ChangePasswordForm() {
   return (
      <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center gap-8 md:gap-14 py-12 md:w-125"
+        className="flex flex-col items-center gap-8 py-12 md:w-125"
       >
          <div className="flex flex-col gap-3 w-full">
            <Label className="md:text-lg">Senha Atual</Label>
