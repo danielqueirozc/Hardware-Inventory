@@ -6,6 +6,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "start": "tsx src/server.ts",
     "dev": "tsx watch src/server.ts",
     "format": "biome format --write",
     "db:generate": "prisma generate",
