@@ -9,7 +9,7 @@ interface SearchInputType {
 
 export function SearchInput({ type }: SearchInputType) {
   const [search, setSearch] = useState<string>('')
-  const [isCurrentSearchValid, setIsCurrentSearchValid] = useState<boolean | null>()
+  const [_, setIsCurrentSearchValid] = useState<boolean | null>()
 
   const InventoryStore = useInventoryStore() 
 
