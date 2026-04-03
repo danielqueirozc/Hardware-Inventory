@@ -1,4 +1,4 @@
-import { Search, SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import { InfoUser } from "./ui/info-user";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Checkbox } from "./ui/checkbox";
@@ -8,9 +8,11 @@ import { ItemDesktop } from "./item-desktop";
 import { useInventoryStore } from "@/context/inventory-store";
 import { useState } from "react";
 import type { ItemType } from "@/@types";
+import { SearchInput } from "./ui/search-input";
 
 interface DashboardItemType {
   type: ItemType
+  title: string
 }
 
 export function DashboardItem({ type, title}: DashboardItemType) {
@@ -31,7 +33,7 @@ export function DashboardItem({ type, title}: DashboardItemType) {
       console.error('nao foi')
     }
   }
-
+  
   return (
     <div className="flex-1 flex flex-col gap-16 px-24 pb-8 bg-[#FAFAFA]">
       <header className="flex justify-between py-8 -mx-20 px-20 border-b-4 border-gray-300">
