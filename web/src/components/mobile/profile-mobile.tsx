@@ -102,7 +102,7 @@ export function ProfileMobile() {
 
         <Link
           onClick={logout}
-          className="mb-12 md:m-24 flex gap-2 text-red-500 md:text-lg font-medium" 
+          className="mb-12 md:mb-24 flex gap-2 text-red-500 md:text-lg font-medium" 
           to='/login'
         >
           <LogOut className="h-5 md:h-6" />
