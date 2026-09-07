@@ -121,11 +121,8 @@ export const useInventoryStore = create<InventoryStoreType>()(
       }
     },
     createItem: async ({ name, amount, type, filters }: CreateItemType) => {
-      try {
-        
+      try {     
         const response = await inventoryService.createItem({ name, amount, type, filters })
-
-
 
         set(state => ({
           itemsByType: [...state.itemsByType, response.item]
