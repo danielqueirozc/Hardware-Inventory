@@ -39,13 +39,13 @@ interface AuthStore {
   verifyCurrentPassword: (currentPassword: string) => Promise<verifyCurrentPasswordResponseType>
 }
 
-// create<AuthStore>()() - Note os dois parênteses! Isso é necessário quando usa TypeScript com middleware (persist). É uma peculiaridade do Zustand.
+// create<AuthStore>()() - dois parênteses, isso é necessário quando usa TypeScript com middleware (persist). É uma peculiaridade do Zustand
 export const useAuthStore = create<AuthStore>()(
   persist(
     // é a função que você usa para atualizar o estado da store. É como o useState do React, mas para a store global.
     (set) => ({
       // Estado
-      // Define o estado inicial da store. São as variáveis que ficam disponíveis globalmente. Começa tudo null/false porque o usuário não está logado ainda.
+      // Define o estado inicial da store. são as variáveis que ficam disponíveis globalmente, começa tudo null/false porque o usuário não está logado ainda.
       user: null,
       token: null,
       isAuthenticated: false,
@@ -93,7 +93,7 @@ export const useAuthStore = create<AuthStore>()(
 
       // verificar autenticação
       checkAuth: async () => {
-        // é uma função especial do Zustand que retorna o estado atual sem fazer o componente re-renderizar. Útil para pegar valores dentro de funções.
+        // é uma função especial do Zustand que retorna o estado atual sem fazer o componente re-renderizar, Útil para pegar valores dentro de funções
         const token = useAuthStore.getState().token
         
         if (!token) {
