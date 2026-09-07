@@ -34,7 +34,6 @@ export function App() {
       
       const token = useAuthStore.getState().token
       
-      
       if (token) {
         const checkAuth = useAuthStore.getState().checkAuth
         await checkAuth()
