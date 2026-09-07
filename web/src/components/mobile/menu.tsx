@@ -58,44 +58,44 @@ export function Menu() {
           <span className="h-0.75 w-full bg-gray-100 rounded-3xl transition-all duration-400 ease-in-out" />
         </button>
       </SheetTrigger>
-        <SheetContent className="absolute top-18 md:top-32 bg-green h-7/10 w-6/10 rounded-l-[60px] border-0">
+        <SheetContent className="absolute top-18 md:top-32 bg-green h-7/10 w-6/10 rounded-l-[60px] border-2">
 
-          <RadioGroup
-            className="flex flex-col gap-12 md:gap-18 justify-center pl-12 py-20"
+          <RadioGroup 
+            className="flex flex-col max-[375px]:gap-6 gap-12 md:gap-18 justify-center pl-12 py-20"
             value={selectedValue}
             //  é o callback que dispara quando o usuário seleciona uma opção, tb recebe o value e passo para redirectToRoute
             onValueChange={redirectToRoute}
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Início")}>
               <RadioGroupItem className="border-0 bg-gray-350 w-2 md:w-3 h-2 md:h-4" value="Início" />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Início</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Componentes")}>
               <RadioGroupItem className="border-0 bg-gray-350 w-2 md:w-3 h-2 md:h-4" value="Componentes" />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Componentes</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Computador")}>
               <RadioGroupItem className="border-0 bg-gray-350 w-2 md:w-3 h-2 md:h-4" value="Computador" />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Computador</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Notebook")}>
               <RadioGroupItem className="border-0 bg-gray-350 w-2 md:w-3 h-2 md:h-4" value="Notebook" />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Notebook</Label>
             </div>
-             <div className="flex items-center space-x-2">
+             <div className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Materiais")}>
               <RadioGroupItem className="border-0 bg-gray-350 w-2 md:w-3 h-2 md:h-4" value="Materiais" />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Materiais</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => redirectToRoute("Cabos")}>
               <RadioGroupItem className="border-0 bg-gray-350 w-2 md:w-3 h-2 md:h-4" value="Cabos" />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Cabos</Label>
             </div>
 
-            <div className="flex items-center space-x-2 mt-8">
+            <div className="flex items-center space-x-2 mt-8 cursor-pointer" onClick={() => redirectToRoute("Perfil")}>
               <RadioGroupItem
                 color="blue" // cor diferente só para o perfil
-                className="border-0 bg-gray-350 w-2 md:w-4 h-2 md:h-4" 
-                value="Perfil" 
+                className="border-0 bg-gray-350 w-2 md:w-4 h-2 md:h-4"
+                value="Perfil"
               />
               <Label className="text-gray-350 text-lg md:text-2xl font-semibold">Perfil</Label>
             </div>
